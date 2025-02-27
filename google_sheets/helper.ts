@@ -109,7 +109,7 @@ export async function appendAlumniToSheet(formData: SignUpFormData){
 export async function appendSignUpToSheet(formData: SignUpFormData) {
   try {
     const spreadsheetId = process.env.SHEET_ID!;
-    const range = "Anmälningar!A2"; // Change if needed
+    const range = "Anmälningar!A4"; // Change if needed
 
     const formattedData = formatSignUpDataForSheets(formData);
 
