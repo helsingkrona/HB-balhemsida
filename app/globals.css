@@ -7,12 +7,34 @@
   --foreground: #171717;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+.form-group {
+  @apply border-primaryBlue border-2 rounded-md ;
 }
+
+.form-label {
+  @apply block font-medium pt-2;
+}
+
+.form-question {
+  @apply bg-slate-100 m-1 rounded-md;
+}
+
+.form-section {
+  @apply block font-bold text-center;
+}
+
+.form-answer-box {
+  @apply grid grid-cols-2 gap-1
+}
+
+.form-answer-alternative{
+  @apply flex items-center space-x-2
+}
+
+.form-answer-tip{
+  @apply leading-none text-gray-500 block
+}
+
 
 body {
   color: var(--foreground);
