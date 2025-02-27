@@ -14,6 +14,7 @@
     "fs": "^0.0.1-security",
     "google-auth-library": "^9.15.1",
     "googleapis": "^144.0.0",
+    "hbevent": "file:",
     "mysql2": "^3.12.0",
     "next": "15.1.7",
     "react": "^19.0.0",
