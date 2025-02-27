@@ -1,38 +1,431 @@
 "use client";
 
+import { useForm } from "react-hook-form";
+import { useState } from "react";
+import BookOpeningOverlay from "@/components/BookOpeningOverlay";
+
+import { SignUpFormData } from "@/google_sheets/helper";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function BookOpeningAnimation() {
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignUpFormData>();
+
+  const onSubmit = async (data: SignUpFormData) => {
+    console.log("Formulärdata:", data);
+
+    const response = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      alert("Din anmälan har sickats!");
+    } else {
+      alert("Något har gått fel, försök igen. Om felet kvarstår kontakta it@helsingkrona.se");
+    }
+  };
+
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    title: "",
+    address: "",
+    postal_code: "",
+    city: "",
+    relationship_to_nation: "",
+    food_preference: "",
+    companion: "",
+    group: "",
+    baler: 0,
+    extra_snaps_tickets: 0,
+    friday_dinner: "",
+    saturday_dinner: "",
+    alumni_drink: false,
+    saturday_drink_preference: "",
+    sexa: "",
+    brunch: false,
+    medal: "",
+    nation_pin: false,
+    donation: 0,
+    gdpr: false,
+    is_paying_guest: false,
+    total_cost: 0,
+  });
+
+  const [animationComplete, setAnimationComplete] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
   return (
-    <main className="flex items-center justify-center min-h-screen pt-1">
-      <div className="relative w-[600px] h-[800px] flex">
-        
-        {/* Left Page */}
-        <motion.div
-          className="absolute w-1/2 h-full bg-white left-0 origin-left"
-          initial={{ rotateY: 0 }}
-          animate={{ rotateY: 90 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        >
-          <div className="relative w-full h-full">
-            <Image src="/framsidaleft.png" alt="Left Page" fill className="object-cover" />
-          </div>
-        </motion.div>
+    <main className="flex items-center justify-center min-h-screen pt-15 relative">
+      {!animationComplete && (
+        <div className="absolute w-[600px] h-[800px] flex z-[60]">
+          {/* Left Page */}
+          <motion.div
+            className="absolute w-1/2 h-full bg-white left-0 origin-left z-[60]"
+            initial={{ rotateY: 0 }}
+            animate={{ rotateY: 90 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            onAnimationComplete={() => setAnimationComplete(true)}
+          >
+            <div className="relative w-full h-full">
+              <Image src="/framsidaleft.png" alt="Left Page" fill className="object-cover" />
+            </div>
+          </motion.div>
 
-        {/* Right Page */}
-        <motion.div
-          className="absolute w-1/2 h-full bg-white right-0 origin-right"
-          initial={{ rotateY: 0 }}
-          animate={{ rotateY: -90 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        >
-          <div className="relative w-full h-full">
-            <Image src="/framsidaright.png" alt="Right Page" fill className="object-cover" />
-          </div>
-        </motion.div>
+          {/* Right Page */}
+          <motion.div
+            className="absolute w-1/2 h-full bg-white right-0 origin-right z-[60]"
+            initial={{ rotateY: 0 }}
+            animate={{ rotateY: -90 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+          >
+            <div className="relative w-full h-full">
+              <Image src="/framsidaright.png" alt="Right Page" fill className="object-cover" />
+            </div>
+          </motion.div>
+        </div>
+      )}
+      <div className={`max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg z-[50]`}>
+        <h1 className="text-2xl font-bold mb-4">Anmälan till Snörsjöaorden</h1>
 
-      </div>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Personuppgifter och annat */}
+          <div className="form-group">
+            {/* Namn */}
+            <div>
+              <label className="form-label">Förnamn</label>
+              <input
+                {...register("first_name", { required: "Förnamn är obligatoriskt" })}
+                className="border p-2 w-full rounded"
+              />
+              {errors.first_name && <p className="text-red-500">{errors.first_name.message}</p>}
+            </div>
+
+            <div>
+              <label className="form-label">Efternamn</label>
+              <input
+                {...register("last_name", { required: "Efternamn är obligatoriskt" })}
+                className="border p-2 w-full rounded"
+              />
+              {errors.last_name && <p className="text-red-500">{errors.last_name.message}</p>}
+            </div>
+
+            {/* Titel */}
+            <div>
+              <label className="form-label">Titel</label>
+              <input {...register("title")} className="border p-2 w-full rounded" />
+            </div>
+
+            {/* E-post */}
+            <div>
+              <label className="form-label">E-postadress</label>
+              <input
+                type="email"
+                {...register("email", { required: "E-post är obligatoriskt" })}
+                className="border p-2 w-full rounded"
+              />
+              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+            </div>
+
+            {/* Adress */}
+            <div>
+              <label className="form-label">Adress</label>
+              <input
+                {...register("address", { required: "Adress är obligatoriskt" })}
+                className="border p-2 w-full rounded"
+              />
+              {errors.address && <p className="text-red-500">{errors.address.message}</p>}
+            </div>
+
+            {/* Postnummer & Stad */}
+            <div className="flex gap-4">
+              <div className="flex-1">
+                <label className="form-label">Postnummer</label>
+                <input
+                  {...register("postal_code", { required: "Postnummer är obligatoriskt" })}
+                  className="border p-2 w-full rounded"
+                />
+                {errors.postal_code && <p className="text-red-500">{errors.postal_code.message}</p>}
+              </div>
+
+              <div className="flex-1">
+                <label className="form-label">Ort</label>
+                <input
+                  {...register("city", { required: "Ort är obligatoriskt" })}
+                  className="border p-2 w-full rounded"
+                />
+                {errors.city && <p className="text-red-500">{errors.city.message}</p>}
+              </div>
+            </div>
+
+            {/* Relation till nationen */}
+            <div>
+              <label className="form-label">Relation till nationen</label>
+              <input {...register("relationship_to_nation")} className="border p-2 w-full rounded" />
+            </div>
+
+            {/* Respektive */}
+            <div>
+              <label className="form-label">Respektive</label>
+              <input {...register("companion")} className="border p-2 w-full rounded" />
+            </div>
+
+            {/* Sällskap */}
+            <div>
+              <label className="form-label">Sällskap</label>
+              <input {...register("group")} className="border p-2 w-full rounded" />
+            </div>
+
+            {/* Matpreferenser */}
+            <div>
+              <label className="form-label">Matpreferens</label>
+              <input {...register("food_preference")} className="border p-2 w-full rounded" />
+            </div>
+          </div>
+          {/* Anmälan till fredagssittningen */}
+          <div className="form-group">
+            <label className="form-section">Fredagen 31/9</label>
+            <label className="form-label">Vill du gå på Snörsjöasittningen?</label>
+            <div className="form-answer-box">
+              <label className="form-answer-alternative">
+                <input type="radio" {...register("friday_dinner")} value="Ja" />
+                <span>Ja</span>
+              </label>
+              <label className="form-answer-alternative">
+                <input type="radio" {...register("friday_dinner")} value="Nej" />
+                <span>Nej</span>
+              </label>
+            </div>
+          </div>
+          {/* Anmälan till balen */}
+          <div className=" border-primaryBlue border-2 rounded-md">
+            <label className="form-section">Lördagen 1/10</label>
+            <div className="form-question">
+              <label className="form-label">Prisgrupp</label>
+              <div className="form-answer-box">
+                <label className="flex items-center gap-1 space-x-2">
+                  <input type="radio" {...register("saturday_dinner", { required: "Välj ett alternativ" })} value="Student" />
+                  <span>Student</span>
+                </label>
+                <label className="flex items-center gap-1 space-x-2">
+                  <input type="radio" {...register("saturday_dinner", { required: "Välj ett alternativ" })} value="Icke-student" />
+                  <span>Icke-student</span>
+                </label>
+                {errors.saturday_dinner && <p className="text-red-500">{errors.saturday_dinner.message}</p>}
+              </div>
+            </div>
+
+            <div className="form-question">
+              <label className="form-answer-alternative">
+                <input type="checkbox" {...register("alumni_drink")} />
+                <span>Jag vill anmäla mig till alumnifördrinken</span>
+              </label>
+            </div>
+
+            <div className="form-question">
+              <label className="form-label">Dryckespreferens</label>
+              <div className="form-answer-box">
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("saturday_drink_preference", { required: "Välj ett alternativ" })} value="Öl" />
+                  <span>Öl</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("saturday_drink_preference", { required: "Välj ett alternativ" })} value="Cider" />
+                  <span>Cider</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("saturday_drink_preference", { required: "Välj ett alternativ" })} value="Alkfri öl" />
+                  <span>Alkoholfri öl</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("saturday_drink_preference", { required: "Välj ett alternativ" })} value="Alkfri cider" />
+                  <span>Alkohholfri cider</span>
+                </label>
+                {errors.saturday_drink_preference && <p className="text-red-500">{errors.saturday_drink_preference.message}</p>}
+              </div>
+            </div>
+            {/* Extra snapsbiljetter */}
+            <div className="form-question">
+              <label className="form-label">Extra snapsbiljetter</label>
+              <small className="form-answer-tip">En snaps ingår i middagspriset. Du kan köpa till upp till 3 extra snaps.</small>
+              <div className="form-answer-box">
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("extra_snaps_tickets", { required: "Välj ett alternativ" })} value="0" />
+                  <span>0</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("extra_snaps_tickets", { required: "Välj ett alternativ" })} value="1" />
+                  <span>1</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("extra_snaps_tickets", { required: "Välj ett alternativ" })} value="2" />
+                  <span>2</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("extra_snaps_tickets", { required: "Välj ett alternativ" })} value="3" />
+                  <span>3</span>
+                </label>
+                {errors.extra_snaps_tickets && <p className="text-red-500">{errors.extra_snaps_tickets.message}</p>}
+              </div>
+            </div>
+
+            <div className="form-question">
+              <label className="form-label">Sexa</label>
+              <div className="form-answer-box">
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("sexa")} value="Öl" />
+                  <span>Ja - Öl</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("sexa")} value="Cider" />
+                  <span>Ja - Cider</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("sexa")} value="nej" />
+                  <span>Nej</span>
+                </label>
+              </div>
+            </div>
+            <div className="form-question">
+              <label className="form-label">Ordensmedalj</label>
+              <div className="form-answer-box">
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("medal", { required: "Välj ett alternativ" })} value="ja" />
+                  <span>Ja</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("medal", { required: "Välj ett alternativ" })} value="nej" />
+                  <span>Nej</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("medal", { required: "Välj ett alternativ" })} value="byta in" />
+                  <span>Byta in</span>
+                </label>
+              </div>
+              <small className="form-answer-tip">Det är ditt egna ansvar att byta in din medalj under <a target="_blank"
+                href="https://helsingkrona.se/sv/kontakta-oss" className="text-blue-500 underline">expeditionstid</a>. Väljer du att köpa en medalj så kommer du få den i ditt kuvert på balen.</small>
+
+              {errors.medal && <p className="text-red-500">{errors.medal.message}</p>}
+            </div>
+
+            <div className="form-question">
+              <label className="form-label">Grad - Den du uppnår på denna bal</label>
+              <div className="space-y-2">
+                {[
+                  { value: "1", label: "5:e Ståndet Torvvändare (1:a balen)" },
+                  { value: "2", label: "4:e Ståndet Stigfinnare (2:a balen)" },
+                  { value: "3", label: "3:e Ståndet Flottare (3:e balen)" },
+                  { value: "4", label: "2:a Ståndet Rallare (4:e balen)" },
+                  { value: "5", label: "1:a Ståndet Jägare (5:e balen)" },
+                  { value: "6", label: "Trädplanterare" },
+                  { value: "7", label: "Äldre" },
+                ].map((option) => (
+                  <div key={option.value} className="flex items-center">
+                    <input
+                      type="radio"
+                      id={`grad${option.value}`}
+                      value={option.value}
+                      {...register("baler", { required: "Välj din grad" })}
+                      className="h-4 w-4 text-blue-600 border-gray-300 focus:ring-blue-500"
+                    />
+                    <label
+                      htmlFor={`grad${option.value}`}
+                      className="ml-2 text-gray-900"
+                    >
+                      {option.label}
+                    </label>
+                  </div>
+                ))}
+              </div>
+              {errors.baler && (
+                <p className="text-red-500 text-sm mt-1">{errors.baler.message}</p>
+              )}
+              <small className="form-answer-tip">
+                Ska du bli jägare? Kontakta Övermarskalk på{" "}
+                <a
+                  href="mailto:overmarskalk@helsingkrona.se"
+                  className="text-blue-500 underline"
+                >
+                  overmarskalk@helsingkrona.se
+                </a>{" "}
+                för att anmäla dig till jägarmiddagen. Ska du plantera träd, skicka in bevis till addressen ovan.
+              </small>
+            </div>
+          </div>
+
+          {/* Anmälan till söndagsbrunchen */}
+          <div className="form-group">
+            <label className="form-section">Söndagen 2/10</label>
+            <label className="form-label">Vill du gå på Snörsjöbrunchen?</label>
+            <div className="form-answer-box">
+              <label className="form-answer-alternative">
+                <input type="radio" {...register("brunch")} value="true" />
+                <span>Ja</span>
+              </label>
+              <label className="form-answer-alternative">
+                <input type="radio" {...register("brunch")} value="false" />
+                <span>Nej</span>
+              </label>
+            </div>
+          </div>
+
+          {/* Övriga val */}
+          <div className="form-group">
+            <label className="form-section">Övriga tillägg</label>
+
+            <div className="form-question">
+              <label className="form-answer-alternative">
+                <input type="checkbox" {...register("nation_pin")} />
+                <span>Helsingkrona-pin</span>
+              </label>
+            </div>
+            <div className="form-question">
+              <label className="form-label">Donation (minst 250 kr)
+                <input
+                  {...register("donation")}
+                  className="border p-2 w-full rounded"
+                />
+              </label>
+            </div>
+            <div>
+
+            </div>
+          </div>
+
+          <div>
+            {/* GDPR Checkbox */}
+            <label className="form-answer-alternative">
+              <input
+                type="checkbox"
+                {...register("gdpr", { required: "Du måste godkänna GDPR-policyn" })}
+              />
+              <span>Jag godkänner att Helsingkrona nation sparar mina uppgifter i enlighet med GDPR</span>
+            </label>
+            {errors.gdpr && <p className="text-red-500">{errors.gdpr.message}</p>}
+          </div>
+
+          {/* Submit */}
+          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+            Skicka anmälan
+          </button>
+        </form >
+      </div >
     </main>
   );
 }
