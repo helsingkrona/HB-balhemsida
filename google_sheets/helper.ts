@@ -75,7 +75,7 @@ function formatSignUpDataForSheets(formData: SignUpFormData): string[][] {
 export async function appendSignUpToSheet(formData: SignUpFormData) {
   try {
     const spreadsheetId = process.env.SHEET_ID!;
-    const range = "Anmälningar!A4"; // Change if needed
+    const range = "Anmälningar!B4"; // Change if needed
 
     const formattedData = formatSignUpDataForSheets(formData);
 
