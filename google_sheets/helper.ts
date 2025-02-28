@@ -87,23 +87,34 @@ function formatSignUpDataForSheets(formData: SignUpFormData): string[][] {
 
 // Function to append data to Google Sheets
 export async function appendSignUpToSheet(formData: SignUpFormData) {
-  try {
-    const spreadsheetId = process.env.SHEET_ID!;
-    const range = "Anmälningar!B4:X1"; // Change if needed
 
-    const formattedData = formatSignUpDataForSheets(formData);
+  wirteToSheet(formData, "Anmälningar!A4")
 
-    const result = await sheets.spreadsheets.values.append({
-      spreadsheetId,
-      range,
-      valueInputOption: "RAW",
-      requestBody: { values: formattedData },
-    });
+  wirteToSheet(formData, "[Skrivskyddad]Anmälningar!A1")
+  
 
-    console.log("Data added:", result.data);
-    return result.data;
-  } catch (error: any) {
-    console.error("Google Sheets API Error:", error.response?.data || error.message);
-    throw error;
+  async function wirteToSheet(formData: SignUpFormData, range: string) {
+    try {
+      const spreadsheetId = process.env.SHEET_ID!;
+  
+      const formattedData = formatSignUpDataForSheets(formData);
+  
+      const result = await sheets.spreadsheets.values.append({
+        spreadsheetId,
+        range,
+        valueInputOption: "RAW",
+        requestBody: { values: formattedData },
+      });
+  
+      console.log("Data added:", result.data);
+      return result.data;
+    } catch (error: any) {
+      console.error("Google Sheets API Error:", error.response?.data || error.message);
+      throw error;
+    }
+    
   }
+  
 }
+
+
