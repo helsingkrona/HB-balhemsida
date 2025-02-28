@@ -70,40 +70,6 @@ function formatSignUpDataForSheets(formData: SignUpFormData): string[][] {
 }
 
 
-function formatAlumniDataForSheets(formData: SignUpFormData): string[][]{
-  const values = [
-    formData.first_name,
-    formData.last_name,
-    formData.email,
-    formData.alumni_drink ? "Ja" : "Nej",
-  ];
-
-  return [values];
-}
-
-//Function för att lägga in i alumniarket
-export async function appendAlumniToSheet(formData: SignUpFormData){
-
-  try {
-  const spreadsheetId = process.env.SHEET_ID!;
-  const range = "Alumnifördrink!A1"; // Change if needed
-
-  const formattedData = formatAlumniDataForSheets(formData);
-
-  const result = await sheets.spreadsheets.values.append({
-    spreadsheetId,
-    range,
-    valueInputOption: "RAW",
-    requestBody: { values: formattedData },
-  });
-  console.log("Data added:", result.data);
-    return result.data;
-  } catch (error: any) {
-    console.error("Google Sheets API Error:", error.response?.data || error.message);
-    throw error;
-  }
-
-}
 
 // Function to append data to Google Sheets
 export async function appendSignUpToSheet(formData: SignUpFormData) {
