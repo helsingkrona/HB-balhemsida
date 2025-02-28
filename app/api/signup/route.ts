@@ -1,6 +1,6 @@
 // app/api/signup/route.ts
 import { NextRequest, NextResponse } from "next/server";
-import { appendAlumniToSheet, appendSignUpToSheet, SignUpFormData } from "@/google_sheets/helper";
+import {  appendSignUpToSheet, SignUpFormData } from "@/google_sheets/helper";
 
 export async function POST(req: NextRequest) {
   try {
@@ -15,10 +15,6 @@ export async function POST(req: NextRequest) {
       
     }
 
-    if(formData.alumni_drink){
-      console.log("Alumni")
-      await appendAlumniToSheet(formData);
-    }
 
     await appendSignUpToSheet(formData);
 
