@@ -2,6 +2,17 @@
 import { google } from "googleapis";
 import fs from "fs";
 
+const options: Intl.DateTimeFormatOptions = {
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  hour12: false,
+  timeZone: "Europe/Stockholm"
+}
+
 export interface SignUpFormData {
   first_name: string;
   last_name: string;
@@ -40,7 +51,10 @@ const sheets = google.sheets({ version: "v4", auth });
 
 // Convert SignUpFormData into a 2D array for Google Sheets
 function formatSignUpDataForSheets(formData: SignUpFormData): string[][] {
+  let now = new Date();
+  let formattedDate = new Intl.DateTimeFormat("en-GB", options).format(now);
   const values = [
+    formattedDate,
     formData.first_name,
     formData.last_name,
     formData.email,
@@ -75,7 +89,7 @@ function formatSignUpDataForSheets(formData: SignUpFormData): string[][] {
 export async function appendSignUpToSheet(formData: SignUpFormData) {
   try {
     const spreadsheetId = process.env.SHEET_ID!;
-    const range = "Anmälningar!B4"; // Change if needed
+    const range = "Anmälningar!B4:X1"; // Change if needed
 
     const formattedData = formatSignUpDataForSheets(formData);
 
@@ -92,10 +106,4 @@ export async function appendSignUpToSheet(formData: SignUpFormData) {
     console.error("Google Sheets API Error:", error.response?.data || error.message);
     throw error;
   }
-}
-
-//Todo
-export async function calculateTotalCost(formData: SignUpFormData){
-  //Vet inte om man ska beräkna här eller i formuläret beror på hur vi lägger upp det
-  
 }
