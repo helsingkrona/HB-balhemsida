@@ -54,6 +54,10 @@
   @apply max-w-3xl w-full p-6 bg-white shadow-md rounded-md;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

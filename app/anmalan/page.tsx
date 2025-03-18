@@ -25,7 +25,7 @@ export default function BookOpeningAnimation() {
       groups: [
         {
           groupName: "Kontaktinformation",
-          fields: ["first_name", "last_name", "email", "title"],
+          fields: ["first_name", "last_name", "title", "email",],
         },
         {
           groupName: "Adress",
@@ -56,6 +56,7 @@ export default function BookOpeningAnimation() {
             "saturday_drink_preference",
             "companion",
             "group",
+            "grade",
           ],
         },
         {
@@ -170,6 +171,20 @@ export default function BookOpeningAnimation() {
       options: ["Student", "Icke-student"],
       required: true,
     },
+    grade: {
+      label: "Grad - Den du uppnår denna bal",
+      type: "select",
+      options: [
+        "5:e Ståndet Torvvändare (1:a balen)",
+        "4:e Ståndet Stigfinnare (2:a balen)",
+        "3:e Ståndet Flottare (3:e balen)",
+        "2:e Ståndet Rallare (4:e balen)",
+        "1:a Ståndet Jägare (5:e balen)",
+        "Trädplanterare",
+        "Äldre",
+      ],
+      required: true,
+    },
     alumni_drink: {
       label: "Alumnidrink",
       type: "checkbox",
@@ -199,7 +214,7 @@ export default function BookOpeningAnimation() {
       tip: "250 kr",
     },
     nation_pin: {
-      label: "Nationspin",
+      label: "Helsingkrona-pin",
       type: "checkbox",
       required: false,
       tip: "100 kr",
@@ -381,7 +396,7 @@ export default function BookOpeningAnimation() {
             variants={itemVariants}
           >
             <label className="form-label">{config.label}</label>
-            <div className="flex space-x-4">
+            <div className="flex space-x-2">
               {config.options?.map((option) => (
                 <div key={option} className="form-answer-alternative">
                   <input
