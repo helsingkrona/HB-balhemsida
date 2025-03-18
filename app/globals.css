@@ -3,12 +3,12 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #A2CAE8;
   --foreground: #171717;
 }
 
 .form-group {
-  @apply border-primaryBlue border-2 rounded-md ;
+  @apply border-primaryBlue border-2 rounded-md;
 }
 
 .form-label {
@@ -24,17 +24,35 @@
 }
 
 .form-answer-box {
-  @apply grid grid-cols-2 gap-1
+  @apply grid grid-cols-2 gap-1;
 }
 
-.form-answer-alternative{
-  @apply flex items-center space-x-2
+.form-answer-alternative {
+  @apply flex items-center space-x-2;
 }
 
-.form-answer-tip{
-  @apply leading-none text-gray-500 block
+.form-answer-tip {
+  @apply leading-none text-gray-500 block;
 }
 
+.form-full-width {
+  @apply col-span-2 bg-slate-100 m-1 rounded-md;
+  display: flex;
+  flex-direction: column; /* Stacks children vertically */
+  align-items: center;    /* Centers items horizontally */
+  padding: 1rem;
+  margin: 1rem auto;
+}
+
+
+/* New styles to center the form and limit its width */
+.form-container {
+  @apply flex justify-center items-center min-h-screen;
+}
+
+.form-wrapper {
+  @apply max-w-3xl w-full p-6 bg-white shadow-md rounded-md;
+}
 
 body {
   color: var(--foreground);

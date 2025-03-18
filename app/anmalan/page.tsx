@@ -34,40 +34,55 @@ export default function BookOpeningAnimation() {
       ],
     },
     {
-      sectionName: "Evenemang",
+      sectionName: "Fredag",
       groups: [
         {
-          groupName: "Middagar",
-          fields: ["friday_dinner", "saturday_dinner"],
+          groupName: "Sittning",
+          fields: ["friday_dinner"],
+        },
+      ],
+    },
+    {
+      sectionName: "Lördag",
+      groups: [
+        {
+          groupName: "Bal",
+          fields: ["saturday_dinner"],
         },
         {
-          groupName: "Övriga aktiviteter",
-          fields: ["alumni_drink", "sexa", "brunch"],
+          groupName: "Preferenser",
+          fields: [
+            "food_preference",
+            "saturday_drink_preference",
+            "companion",
+            "group",
+          ],
+        },
+        {
+          groupName: "Tillval",
+          fields: [
+            "alumni_drink",
+            "sexa",
+            "extra_snaps_tickets",
+            "baler",
+            "medal",
+            "nation_pin",
+          ],
         },
       ],
     },
     {
-      sectionName: "Preferenser",
-      fields: [
-        "food_preference",
-        "saturday_drink_preference",
-        "companion",
-        "group",
-      ],
-    },
-    {
-      sectionName: "Tillval",
-      fields: [
-        "extra_snaps_tickets",
-        "baler",
-        "medal",
-        "nation_pin",
-        "donation",
+      sectionName: "Söndag",
+      groups: [
+        {
+          groupName: "Brunch",
+          fields: ["brunch"],
+        },
       ],
     },
     {
       sectionName: "Övrigt",
-      fields: ["relationship_to_nation", "gdpr", "is_paying_guest"],
+      fields: ["relationship_to_nation", "gdpr", "donation"],
     },
   ];
 
@@ -79,6 +94,7 @@ export default function BookOpeningAnimation() {
       required: boolean;
       options?: string[];
       tip?: string;
+      min?: number;
     };
   } = {
     first_name: { label: "Förnamn", type: "text", required: true },
@@ -100,8 +116,7 @@ export default function BookOpeningAnimation() {
     city: { label: "Ort", type: "text", required: true },
     relationship_to_nation: {
       label: "Relation till nationen",
-      type: "select",
-      options: ["Aktiv", "Äldre", "Vän till nationen", "Annan"],
+      type: "text",
       required: true,
     },
     food_preference: {
@@ -113,44 +128,47 @@ export default function BookOpeningAnimation() {
         "Vegansk",
         "Glutenfri",
         "Laktosfri",
+        "Annan",
       ],
       required: false,
     },
     companion: {
-      label: "Sällskap",
+      label: "Respektive",
       type: "text",
       required: false,
       tip: "Namn på eventuell bordskamrat",
     },
     group: {
-      label: "Grupp",
+      label: "Sällskap",
       type: "text",
       required: false,
       tip: "Om ni är flera som vill sitta tillsammans",
     },
     baler: {
       label: "Baler",
-      type: "select",
-      options: ["0", "1", "2", "3", "4", "5"],
+      type: "number",
       required: false,
-      tip: "Antal baler (150 kr/st)",
+      tip: "Antal baler",
+      min: 0,
     },
     extra_snaps_tickets: {
       label: "Extra snapskvitto",
       type: "select",
       options: ["0", "1", "2", "3"],
       required: false,
-      tip: "Antal extra snapskvitton (120 kr/st)",
+      tip: "Antal extra snapskvitton (40 kr/st)",
     },
     friday_dinner: {
-      label: "Fredagsmiddag",
-      type: "checkbox",
+      label: "Vill du gå på Snörsjöasittningen?",
+      type: "radio",
+      options: ["Ja", "Nej"],
       required: false,
     },
     saturday_dinner: {
-      label: "Lördagsmiddag",
-      type: "checkbox",
-      required: false,
+      label: "Prisgrupp",
+      type: "radio",
+      options: ["Student", "Icke-student"],
+      required: true,
     },
     alumni_drink: {
       label: "Alumnidrink",
@@ -160,8 +178,8 @@ export default function BookOpeningAnimation() {
     saturday_drink_preference: {
       label: "Dryckesval lördag",
       type: "select",
-      options: ["Alkoholhaltig", "Alkoholfri"],
-      required: false,
+      options: ["Öl", "Alkoholfri Öl", "Cider", "Alkoholfri Cider"],
+      required: true,
     },
     sexa: {
       label: "Sexa efter middagen",
@@ -169,8 +187,9 @@ export default function BookOpeningAnimation() {
       required: false,
     },
     brunch: {
-      label: "Brunch på söndag",
-      type: "checkbox",
+      label: "Vill du gå på brunchen på söndag?",
+      type: "radio",
+      options: ["Ja", "Nej"],
       required: false,
     },
     medal: {
@@ -180,27 +199,22 @@ export default function BookOpeningAnimation() {
       tip: "250 kr",
     },
     nation_pin: {
-      label: "Nationsnål",
+      label: "Nationspin",
       type: "checkbox",
       required: false,
       tip: "100 kr",
     },
     donation: {
-      label: "Donation",
-      type: "select",
-      options: [
-        "0 kr",
-        "100 kr",
-        "200 kr",
-        "500 kr",
-        "1000 kr",
-        "Annat belopp",
-      ],
+      label: "Donation (minst 250kr)",
+      type: "text",
       required: false,
+      min: 250,
+      tip: "Frivillig summa för att stödja nationen",
     },
     gdpr: {
       label: "Jag godkänner hantering av personuppgifter",
-      type: "checkbox",
+      type: "radio",
+      options: ["Ja"],
       required: true,
     },
     is_paying_guest: {
@@ -276,6 +290,7 @@ export default function BookOpeningAnimation() {
     required: boolean;
     options?: string[];
     tip?: string;
+    min?: number;
   }
 
   interface Group {
@@ -289,7 +304,7 @@ export default function BookOpeningAnimation() {
     fields?: string[];
   }
 
-  const renderField = (fieldName: string) => {
+  const renderField = (fieldName: string, isSingleField: boolean) => {
     const config: FieldConfig = fieldConfig[fieldName] || {
       ...defaultConfig,
       label: formatLabel(fieldName),
@@ -300,7 +315,9 @@ export default function BookOpeningAnimation() {
         return (
           <motion.div
             key={fieldName}
-            className="form-question"
+            className={`form-question ${
+              isSingleField ? "form-full-width" : ""
+            }`}
             variants={itemVariants}
           >
             <label className="form-label">{config.label}</label>
@@ -330,7 +347,9 @@ export default function BookOpeningAnimation() {
         return (
           <motion.div
             key={fieldName}
-            className="form-question"
+            className={`form-question ${
+              isSingleField ? "form-full-width" : ""
+            }`}
             variants={itemVariants}
           >
             <div className="form-answer-alternative">
@@ -352,12 +371,48 @@ export default function BookOpeningAnimation() {
             {config.tip && <p className="form-answer-tip">{config.tip}</p>}
           </motion.div>
         );
+      case "radio":
+        return (
+          <motion.div
+            key={fieldName}
+            className={`form-question ${
+              isSingleField ? "form-full-width" : ""
+            }`}
+            variants={itemVariants}
+          >
+            <label className="form-label">{config.label}</label>
+            <div className="flex space-x-4">
+              {config.options?.map((option) => (
+                <div key={option} className="form-answer-alternative">
+                  <input
+                    type="radio"
+                    value={option}
+                    {...register(fieldName as keyof SignUpFormData, {
+                      required:
+                        config.required && `${config.label} är obligatoriskt`,
+                    })}
+                    className="h-4 w-4"
+                  />
+                  <label className="form-label">{option}</label>
+                </div>
+              ))}
+            </div>
+            {errors[fieldName as keyof SignUpFormData] && (
+              <p className="text-red-500">
+                {String(errors[fieldName as keyof SignUpFormData]?.message)}
+              </p>
+            )}
+            {config.tip && <p className="form-answer-tip">{config.tip}</p>}
+          </motion.div>
+        );
 
       default:
         return (
           <motion.div
             key={fieldName}
-            className="form-question"
+            className={`form-question ${
+              isSingleField ? "form-full-width" : ""
+            }`}
             variants={itemVariants}
           >
             <label className="form-label">{config.label}</label>
@@ -365,6 +420,13 @@ export default function BookOpeningAnimation() {
               type={config.type}
               {...register(fieldName as keyof SignUpFormData, {
                 required: config.required && `${config.label} är obligatoriskt`,
+                min: config.min !== undefined ? config.min : undefined,
+                validate: (value) => {
+                  if (config.min !== undefined && Number(value) < config.min) {
+                    return `${config.label} måste vara större än eller lika med ${config.min}`;
+                  }
+                  return true;
+                },
               })}
               className="border p-2 w-full rounded"
             />
@@ -385,6 +447,7 @@ export default function BookOpeningAnimation() {
   }
 
   const renderGroup = ({ group }: GroupProps) => {
+    const isSingleField = group.fields.length === 1;
     return (
       <motion.div
         key={group.groupName}
@@ -397,7 +460,9 @@ export default function BookOpeningAnimation() {
           </h4>
         )}
         <div className="form-answer-box">
-          {group.fields.map((fieldName) => renderField(fieldName))}
+          {group.fields.map((fieldName) =>
+            renderField(fieldName, isSingleField)
+          )}
         </div>
       </motion.div>
     );
@@ -427,71 +492,77 @@ export default function BookOpeningAnimation() {
   }
 
   return (
-    <motion.div initial="hidden" animate="visible" variants={containerVariants}>
-      {submitError && (
-        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
-          {submitError}
-        </div>
-      )}
+    <div className="form-container">
+      <div className="form-wrapper">
+        {submitError && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+            {submitError}
+          </div>
+        )}
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        {formStructure.map((section) => (
-          <motion.div
-            key={section.sectionName}
-            className="form-group p-4"
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {formStructure.map((section) => (
+            <motion.div
+              key={section.sectionName}
+              className="form-group p-4"
+              variants={itemVariants}
+            >
+              <h3 className="form-section">{section.sectionName}</h3>
+
+              {section.groups ? (
+                // Render nested groups if they exist
+                section.groups.map((group) => renderGroup({ group }))
+              ) : (
+                // Otherwise render fields directly
+                <div className="form-answer-box">
+                  {section.fields?.map((fieldName) =>
+                    renderField(fieldName, section.fields.length === 1)
+                  )}
+                </div>
+              )}
+            </motion.div>
+          ))}
+
+          <motion.button
+            type="submit"
+            disabled={isSubmitting}
+            className={`bg-blue-500 text-white py-2 px-4 rounded ${
+              isSubmitting
+                ? "opacity-70 cursor-not-allowed"
+                : "hover:bg-blue-600"
+            }`}
             variants={itemVariants}
           >
-            <h3 className="form-section">{section.sectionName}</h3>
-
-            {section.groups ? (
-              // Render nested groups if they exist
-              section.groups.map((group) => renderGroup({ group }))
+            {isSubmitting ? (
+              <span className="flex items-center justify-center">
+                <svg
+                  className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Skickar...
+              </span>
             ) : (
-              // Otherwise render fields directly
-              <div className="form-answer-box">
-                {section.fields?.map((fieldName) => renderField(fieldName))}
-              </div>
+              "Skicka anmälan"
             )}
-          </motion.div>
-        ))}
-
-        <motion.button
-          type="submit"
-          disabled={isSubmitting}
-          className={`bg-blue-500 text-white py-2 px-4 rounded ${
-            isSubmitting ? "opacity-70 cursor-not-allowed" : "hover:bg-blue-600"
-          }`}
-          variants={itemVariants}
-        >
-          {isSubmitting ? (
-            <span className="flex items-center justify-center">
-              <svg
-                className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <circle
-                  className="opacity-25"
-                  cx="12"
-                  cy="12"
-                  r="10"
-                  stroke="currentColor"
-                  strokeWidth="4"
-                ></circle>
-                <path
-                  className="opacity-75"
-                  fill="currentColor"
-                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                ></path>
-              </svg>
-              Skickar...
-            </span>
-          ) : (
-            "Skicka anmälan"
-          )}
-        </motion.button>
-      </form>
-    </motion.div>
+          </motion.button>
+        </form>
+      </div>
+    </div>
   );
 }
