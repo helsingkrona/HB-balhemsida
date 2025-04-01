@@ -38,7 +38,7 @@ export default function BookOpeningAnimation() {
       groups: [
         {
           groupName: "Sittning",
-          fields: ["friday_dinner"],
+          fields: ["friday_dinner", "songbook"],
         },
       ],
     },
@@ -159,6 +159,13 @@ export default function BookOpeningAnimation() {
       required: false,
       tip: "Antal extra snapsbiljett (40 kr/st)",
     },
+    songbook: {
+      label: "Vill du ha en sångbok?",
+      type: "radio",
+      options: ["Ja", "Nej"],
+      required: false,
+      tip: "60kr, Sångboken kommer fås i samband med sittningen Fredag 3/10"
+    },
     friday_dinner: {
       label: "Vill du gå på Snörsjöasittningen?",
       type: "radio",
@@ -180,15 +187,18 @@ export default function BookOpeningAnimation() {
         "3:e Ståndet Flottare (3:e balen)",
         "2:e Ståndet Rallare (4:e balen)",
         "1:a Ståndet Jägare (5:e balen)",
-        "Trädplanterare",
         "Äldre",
       ],
       required: true,
+      tip: "Om detta är din femte eller mer än det bal och du har inte jägarmedaljen och vill ta dig an utmaningen skriv till Övermarskalk?" + 
+            "(Ska du plantera träd var god kontakta kurator via mail q@helidngkorn.se)"
     },
     alumni_drink: {
       label: "Alumnidrink",
-      type: "checkbox",
+      type: "radio",
+      options: ["Ja", "Nej"],
       required: false,
+      tip: "Endast för personer som är med i alumniföreningen Helsingkrona nations Vänner"
     },
     saturday_drink_preference: {
       label: "Dryckesval lördag",
@@ -198,8 +208,11 @@ export default function BookOpeningAnimation() {
     },
     sexa: {
       label: "Sexa efter middagen",
-      type: "checkbox",
+      type: "select",
+      options: ["Ja - Öl", "Ja - Cider", "Ja - Alkoholfri Öl", "Ja - Alkoholfri Cider", "Nej"],
       required: false,
+      tip: "En sexa för Snörsjöaorden är inte som vilken sexa som helst. Det agerar både som mellanfest mellan middagen och eftersläppet men även som en möjlighet för den mindre partysugna att äta lite, dricka god dryck, dansa och exempelvis sjunga karaoke, ta det lite lugnare helt enkelt, under stor del av eftersläppet och är öppen fram till 03:00"
+
     },
     brunch: {
       label: "Vill du gå på brunchen på söndag?",
@@ -212,7 +225,7 @@ export default function BookOpeningAnimation() {
       type: "radio",
       options: ["Byta in (Gratis)", "Ja (100kr)", "Nej"],
       required: false,
-      tip: "Vid byte av medalj, vänligen ta med din gamla medalj till expeditionen under öppettider innan balen.",
+      tip: "Du har eget ansvar att byta i din medalj på expeditionstid. köper du medalj får du den i kuvertet på balen. (Observera att den 5 E MEDALJEN ÄR DEN SISTA MEDALJEN MAN KAN FÅ)",
     },
     nation_pin: {
       label: "Helsingkrona-pin",
