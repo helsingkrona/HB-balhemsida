@@ -88,12 +88,12 @@ function formatSignUpDataForSheets(formData: SignUpFormData): string[][] {
 // Function to append data to Google Sheets
 export async function appendSignUpToSheet(formData: SignUpFormData) {
 
-  wirteToSheet(formData, "Anmälningar!A4")
+  writeToSheet(formData, "Anmälningar!A4")
 
-  wirteToSheet(formData, "[Skrivskyddad]Anmälningar!A1")
+  writeToSheet(formData, "[Skrivskyddad]Anmälningar!A1")
   
 
-  async function wirteToSheet(formData: SignUpFormData, range: string) {
+  async function writeToSheet(formData: SignUpFormData, range: string) {
     try {
       const spreadsheetId = process.env.SHEET_ID!;
   

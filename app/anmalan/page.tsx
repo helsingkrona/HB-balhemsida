@@ -270,32 +270,22 @@ export default function BookOpeningAnimation() {
   };
 
   const onSubmit = async (data: SignUpFormData) => {
-    try {
-      setSubmitError(null);
 
-      // Here you would implement the logic to submit to Google Sheets
-      // For example:
-      const response = await fetch("/api/submit-form", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+    //Skickar formulärsvaret till ´consollen i webläsaren för felsökning, plocka bort innan prod.
+    console.log("Formulärdata:", data);
 
-      if (!response.ok) {
-        throw new Error(
-          "Det uppstod ett problem vid inskickning av formuläret"
-        );
-      }
+    //Skickar formulärsvaret till apiet
+    const response = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
 
-      setIsSubmitted(true);
-      // You might want to reset the form or redirect here
-    } catch (error) {
-      console.error("Submission error:", error);
-      setSubmitError(
-        error instanceof Error ? error.message : "Ett okänt fel uppstod"
-      );
+    if (response.ok) {
+      alert("Din anmälan har skickats!");
+      // Poteniellt maila andressen script
+    } else {
+      alert("Något har gått fel, försök igen. Om felet kvarstår kontakta it@helsingkrona.se");
     }
   };
 
