@@ -25,11 +25,11 @@ export default function BookOpeningAnimation() {
       groups: [
         {
           groupName: "Kontaktinformation",
-          fields: ["first_name", "last_name", "title", "email",],
+          fields: ["first_name", "last_name", "title"],
         },
         {
           groupName: "Adress",
-          fields: ["address", "postal_code", "city"],
+          fields: ["email", "address", "postal_code", "city"],
         },
       ],
     },
@@ -106,7 +106,7 @@ export default function BookOpeningAnimation() {
       required: true,
       tip: "Vi använder denna för att kontakta dig",
     },
-    title: { label: "Titel", type: "text", required: false },
+    title: { label: "Titel", type: "text", required: false, tip: "Frivillig"},
     address: { label: "Gatuadress", type: "text", required: true },
     postal_code: {
       label: "Postnummer",
@@ -137,27 +137,27 @@ export default function BookOpeningAnimation() {
       label: "Respektive",
       type: "text",
       required: false,
-      tip: "Namn på eventuell bordskamrat",
+      tip: "Observera att din respektive också måste skicka in en anmälan till balen för att få möjlighet till en plats",
     },
     group: {
       label: "Sällskap",
       type: "text",
       required: false,
-      tip: "Om ni är flera som vill sitta tillsammans",
+      tip: "Om ni är flera som vill sitta tillsammans. Observera att vi kommer göra vårt bästa för att tillfredsställa alla sällskap",
     },
     baler: {
       label: "Baler",
       type: "number",
       required: false,
-      tip: "Antal baler",
+      tip: "Antal Snörsjöabaler inklusive denna",
       min: 0,
     },
     extra_snaps_tickets: {
-      label: "Extra snapskvitto",
+      label: "Extra snapsbiljett",
       type: "select",
       options: ["0", "1", "2", "3"],
       required: false,
-      tip: "Antal extra snapskvitton (40 kr/st)",
+      tip: "Antal extra snapsbiljett (40 kr/st)",
     },
     friday_dinner: {
       label: "Vill du gå på Snörsjöasittningen?",
@@ -209,9 +209,10 @@ export default function BookOpeningAnimation() {
     },
     medal: {
       label: "Medalj",
-      type: "checkbox",
+      type: "radio",
+      options: ["Byta in (Gratis)", "Ja (100kr)", "Nej"],
       required: false,
-      tip: "250 kr",
+      tip: "Vid byte av medalj, vänligen ta med din gamla medalj till expeditionen under öppettider innan balen.",
     },
     nation_pin: {
       label: "Helsingkrona-pin",
@@ -223,7 +224,7 @@ export default function BookOpeningAnimation() {
       label: "Donation (minst 250kr)",
       type: "text",
       required: false,
-      min: 250,
+      min: 0,
       tip: "Frivillig summa för att stödja nationen",
     },
     gdpr: {

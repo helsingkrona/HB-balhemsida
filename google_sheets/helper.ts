@@ -43,9 +43,10 @@ export interface SignUpFormData {
 
 // Google Sheets Auth
 const auth = new google.auth.GoogleAuth({
-  credentials: JSON.parse(fs.readFileSync(process.env.GOOGLE_APPLICATION_CREDENTIALS!, "utf8")),
+  keyFile: process.env.GOOGLE_APPLICATION_CREDENTIALS, // Use keyFile instead of reading manually
   scopes: ["https://www.googleapis.com/auth/spreadsheets"],
 });
+
 
 const sheets = google.sheets({ version: "v4", auth });
 
