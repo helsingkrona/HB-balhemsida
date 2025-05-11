@@ -179,7 +179,7 @@ export default function BookOpeningAnimation() {
       label: "Helsingkrona-pin",
       type: "checkbox",
       required: false,
-      tip: "100 kr",
+      tip: "20 kr",
     },
     donation: {
       label: "Donation (minst 250 kr)",
