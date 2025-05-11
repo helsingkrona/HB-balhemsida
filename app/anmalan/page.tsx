@@ -18,6 +18,12 @@ export default function BookOpeningAnimation() {
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Field configuration
+  /*
+  * This configuration object defines the properties of each field in the form.
+  * It includes the label, type, whether it's required, and any additional options or tips.
+  * Just add the field name and the properties you want to configure here then
+  * use the field name in the form structure to render it.
+  */
   const fieldConfig: {
     [key: string]: {
       label: string;
@@ -196,6 +202,11 @@ export default function BookOpeningAnimation() {
   };
 
   // Define your form structure with nested groups
+  /*
+  * This structure defines the sections and groups of fields in the form.
+  * Each section can have multiple groups, and each group can contain multiple fields.
+  * The fields are referenced by their names, which should match the keys in the fieldConfig object.
+  */
   const formStructure = [
     {
       sectionName: "Personuppgifter",
