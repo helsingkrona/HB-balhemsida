@@ -1,12 +1,21 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 import { SignUpFormData } from "@/google_sheets/helper";
 
 export default function AnmalanPage() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const now = new Date();
+    const openDate = new Date("2025-08-15T00:00:00"); // Byt till ditt datum
+    if (now >= openDate) {
+      setIsVisible(true);
+    }
+  }, []);
 
   const {
     register,
@@ -33,6 +42,18 @@ export default function AnmalanPage() {
       alert("Något har gått fel, försök igen. Om felet kvarstår kontakta it@helsingkrona.se");
     }
   };
+
+  if (!isVisible) {
+    return (
+      <div className="p-2">
+      <div className="text-center p-6 bg-darkerGreen max-w-2xl shadow-lg rounded-lg mx-auto">
+        <p className="text-lg font-medium">
+          Formuläret öppnar den 15 augusti 2025. Välkommen tillbaka då!
+        </p>
+      </div>
+      </div>
+    );
+  }
 
   return (
     <main>
