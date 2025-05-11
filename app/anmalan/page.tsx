@@ -11,7 +11,6 @@ export default function BookOpeningAnimation() {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors, isSubmitting },
   } = useForm<SignUpFormData>();
 
@@ -45,7 +44,11 @@ export default function BookOpeningAnimation() {
       required: true,
       tip: "Vi använder denna för att kontakta dig",
     },
-    title: { label: "Titel", type: "text", required: false, tip: "Frivillig" },
+    title: { 
+      label: "Titel", 
+      type: "text", 
+      required: false, 
+      tip: "Frivillig" },
     address: { label: "Gatuadress", type: "text", required: true },
     postal_code: {
       label: "Postnummer",
@@ -191,7 +194,7 @@ export default function BookOpeningAnimation() {
       required: false,
     },
   };
-  
+
   // Define your form structure with nested groups
   const formStructure = [
     {
@@ -271,17 +274,6 @@ export default function BookOpeningAnimation() {
       .join(" ");
   };
 
-  // Animation variants for form elements
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -305,9 +297,12 @@ export default function BookOpeningAnimation() {
 
     if (response.ok) {
       alert("Din anmälan har skickats!");
+      setIsSubmitted(true);
+      setSubmitError(null);
       // Poteniellt maila andressen script
     } else {
       alert("Något har gått fel, försök igen. Om felet kvarstår kontakta it@helsingkrona.se");
+      setSubmitError("Något gick fel vid inlämning av formuläret. Försök igen senare.");
     }
   };
 
@@ -375,6 +370,7 @@ export default function BookOpeningAnimation() {
             className={`form-question`}
             variants={itemVariants}
           >
+            <label className="form-label">{config.label}</label>
             <div className="form-question">
               <input
                 type="checkbox"
@@ -384,7 +380,6 @@ export default function BookOpeningAnimation() {
                 })}
                 className="h-4 w-4"
               />
-              <label className="form-label">{config.label}</label>
             </div>
             {errors[fieldName as keyof SignUpFormData] && (
               <p className="text-red-500">
