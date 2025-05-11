@@ -16,7 +16,7 @@ export default function SignupPage() {
 
   const onSubmit = async (data: SignUpFormData) => {
 
-    //Skickar formulärsvaret till ´consollen i webläsaren för felsökning, plocka bort innan prod.
+    //Skickar formulärsvaret till consollen i webläsaren för felsökning, plocka bort innan prod.
     console.log("Formulärdata:", data);
 
     //Skickar formulärsvaret till apiet
