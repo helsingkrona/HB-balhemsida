@@ -48,7 +48,7 @@ export default function RootLayout({
         className={`h-screen flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        <div className="bg-white p-0.5">
+        <div className=" p-0.5">
       </div>
         <main className="flex-grow">
           {children}

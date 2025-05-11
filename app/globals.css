@@ -3,9 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --background: #e9f5db;
+  --background: #2E4E3F;           /* warm beige */
+  --text-color: #2C2C2C;           /* rich charcoal */
   --foreground: #171717;
-  --testjk: #505c3c; 
+  --accent-green: #2E4E3F;         /* deep forest green */
+  --accent-orange: #D97A32;        /* burnt orange */
+  --accent-burgundy: #8B3A3A;      /* optional detail */
+  --form-border: #D4AF37;          /* gold */
+  --input-bg: #f5e4d3;
 }
 
 .striped-navbar {
@@ -18,12 +23,29 @@
   );
 }
 
+body {
+  color: var(--text-color);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-container {
+  @apply flex justify-center items-center min-h-screen;
+}
+
+.form-wrapper {
+  @apply max-w-3xl w-full p-6 shadow-md rounded-md;
+  background-color: var(--input-bg); /* Change this to your desired color */
+  
+}
+
 .navbar-links {
-  @apply text-white text-xl hover:underline
+  @apply text-white text-xl hover:underline;
 }
 
 .from-main {
-  @apply max-w-2xl mx-auto p-6 bg-formOrange shadow-lg rounded-lg
+  @apply max-w-2xl mx-auto p-6 shadow-lg rounded-lg;
+  background-color: var(--input-bg);
 }
 
 .form-group {
@@ -32,14 +54,17 @@
 
 .form-label {
   @apply block font-medium pt-2;
+  color: var(--accent-green);
 }
 
 .form-question {
   @apply m-1 rounded-md;
+  background-color: var(--input-bg);
 }
 
 .form-section {
-  @apply block font-bold text-xl text-center;
+  @apply block font-bold text-xl text-center mb-2;
+  color: var(--accent-green);
 }
 
 .form-answer-box {
@@ -51,32 +76,22 @@
 }
 
 .form-answer-tip {
-  @apply leading-none text-gray-500 block pt-1 text-sm; /* Tailwind utility for smaller text */
+  @apply leading-none text-gray-500 block pt-1 text-sm;
 }
 
 .form-full-width {
   @apply col-span-2 m-1 rounded-md;
   display: flex;
-  flex-direction: column; /* Stacks children vertically */
-  align-items: left;    /* Centers items horizontally */
-}
-
-
-/* New styles to center the form and limit its width */
-.form-container {
-  @apply flex justify-center items-center min-h-screen;
-}
-
-.form-wrapper {
-  @apply max-w-3xl w-full p-6 bg-white shadow-md rounded-md;
-}
-
-.flex-col {
   flex-direction: column;
+  align-items: left;
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+/* Buttons */
+.button-primary {
+  @apply px-4 py-2 rounded-md text-white font-semibold;
+  background-color: var(--accent-green);
+}
+
+.button-primary:hover {
+  background-color: var(--accent-orange);
 }
