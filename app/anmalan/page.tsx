@@ -348,7 +348,7 @@ export default function AnmalanPage() {
             <div className="form-question">
               <label className="form-answer-alternative">
                 <input type="checkbox" {...register("nation_pin")} />
-                <span>Helsingkrona-pin (40 kr)</span>
+                <span>Helsingkrona-pin (20 kr)</span>
               </label>
             </div>
             <div className="form-question">
