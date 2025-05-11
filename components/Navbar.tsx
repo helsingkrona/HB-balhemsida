@@ -5,14 +5,14 @@ const Navbar: React.FC = () => {
     <nav className="striped-navbar p-2">
       <div className="container mx-auto flex items-center justify-between">
         <div className="basis-1/5 flex justify-start">
-          <a href="/">
+          <Link href="/">
             <Image
               src={"/shield_color.png"}
               alt="HB logo"
               width={64}
               height={64}
             />
-          </a>
+          </Link>
 
         </div>
         <ul className="basis-3/5 flex justify-center space-x-6">
