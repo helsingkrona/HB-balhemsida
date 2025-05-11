@@ -28,11 +28,12 @@ export interface SignUpFormData {
   baler?: number;
   extra_snaps_tickets?: number;
   friday_dinner?: string;
+  nation_songbook?: boolean;
   saturday_dinner: string;
   alumni_drink: boolean;
   saturday_drink_preference: string;
   sexa?: string;
-  brunch?: boolean;
+  brunch?: string;
   medal?: string;
   nation_pin?: boolean;
   donation?: number;
@@ -64,19 +65,20 @@ function formatSignUpDataForSheets(formData: SignUpFormData): string[][] {
     formData.city,
     formData.title ?? "",
     formData.relationship_to_nation ?? "",
-    formData.food_preference ?? "",
     formData.companion ?? "",
     formData.group ?? "",
+    formData.food_preference ?? "",
     formData.friday_dinner ?? "Nej",
+    formData.nation_songbook ? "Ja" : "Nej",
     formData.alumni_drink ? "Ja" : "Nej",
     formData.saturday_dinner,
     formData.saturday_drink_preference,
     formData.extra_snaps_tickets?.toString() ?? "",
-    formData.medal ?? "",
-    formData.baler?.toString() ?? "",
     formData.sexa ?? "",
-    formData.brunch ? "Ja" : "Nej",
+    formData.baler?.toString() ?? "",
+    formData.medal ?? "",
     formData.nation_pin ? "Ja" : "Nej",
+    formData.brunch ?? "Nej",
     formData.donation?.toString() ?? "",
     formData.gdpr ? "Ja" : "Nej",
   ];
