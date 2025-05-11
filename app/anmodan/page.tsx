@@ -2,13 +2,11 @@
 
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import BookOpeningOverlay from "@/components/BookOpeningOverlay";
+
 
 import { SignUpFormData } from "@/google_sheets/helper";
 
 export default function SignupPage() {
-
-  const [animationComplete, setAnimationComplete] = useState(false);
 
   const {
     register,
@@ -38,13 +36,9 @@ export default function SignupPage() {
 
   return (
     <main>
-
-
-      {/* Show animation only if not completed */}
-      {/* {!animationComplete && <BookOpeningOverlay onAnimationComplete={() => setAnimationComplete(true)} />} */}
-
-      <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg">
-        <h1 className="text-2xl font-bold mb-4">Anmälan till Snörsjöaorden</h1>
+      <div className="p-2"></div>
+      <div className="max-w-2xl mx-auto p-6 bg-darkerGreen shadow-lg rounded-lg">
+        <h1 className="text-4xl font-bold text-textGreen text-center mb-4">Anmodan Snörsjöaorden</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Personuppgifter och annat */}
@@ -121,19 +115,24 @@ export default function SignupPage() {
             {/* Relation till nationen */}
             <div>
               <label className="form-label">Relation till nationen</label>
-              <input {...register("relationship_to_nation")} className="border p-2 w-full rounded" />
+              <input {...register("relationship_to_nation", { required: "Relation till nationen är obligatoriskt" })}
+              className="border p-2 w-full rounded" />
+              <small className="form-answer-tip">Exempelvis: förman, kurator emeritus/emerita, boende m.m.</small>
+              {errors.relationship_to_nation && <p className="text-red-500">{errors.relationship_to_nation.message}</p>}
             </div>
 
             {/* Respektive */}
             <div>
               <label className="form-label">Respektive</label>
               <input {...register("companion")} className="border p-2 w-full rounded" />
+              <small className="form-answer-tip">Observera att din respektive också måste skicka in en anmälan till balen för att få möjlighet till en plats.</small>
             </div>
 
             {/* Sällskap */}
             <div>
-              <label className="form-label">Sällskap</label>
+              <label className="form-label">Bordssällskap under middagen</label>
               <input {...register("group")} className="border p-2 w-full rounded" />
+              <small className="form-answer-tip">Observera att vi kommer göra vårt bästa för att tillfredsställa alla sällskap.</small>
             </div>
 
             {/* Matpreferenser */}
@@ -145,7 +144,8 @@ export default function SignupPage() {
           {/* Anmälan till fredagssittningen */}
           <div className="form-group">
             <label className="form-section">Fredagen 31/9</label>
-            <label className="form-label">Vill du gå på Snörsjöasittningen?</label>
+            <div className="form-question">
+            <label className="form-label">Vill du gå på Snörsjöasittningen (230 kr)?</label>
             <div className="form-answer-box">
               <label className="form-answer-alternative">
                 <input type="radio" {...register("friday_dinner")} value="Ja" />
@@ -156,6 +156,14 @@ export default function SignupPage() {
                 <span>Nej</span>
               </label>
             </div>
+            </div>
+            <div className="form-question">
+              <label className="form-answer-alternative">
+                <input type="checkbox" {...register("nation_songbook")} />
+                <span>Jag vill köpa till en sångbok (70 kr)</span>
+              </label>
+              <small className="form-answer-tip">Sångboken delas ut under snörsjöasittningen på fredagen</small>
+            </div>
           </div>
           {/* Anmälan till balen */}
           <div className=" border-primaryBlue border-2 rounded-md">
@@ -165,11 +173,11 @@ export default function SignupPage() {
               <div className="form-answer-box">
                 <label className="flex items-center gap-1 space-x-2">
                   <input type="radio" {...register("saturday_dinner", { required: "Välj ett alternativ" })} value="Student" />
-                  <span>Student</span>
+                  <span>Student (915 kr)</span>
                 </label>
                 <label className="flex items-center gap-1 space-x-2">
                   <input type="radio" {...register("saturday_dinner", { required: "Välj ett alternativ" })} value="Icke-student" />
-                  <span>Icke-student</span>
+                  <span>Icke-student 1070 kr</span>
                 </label>
                 {errors.saturday_dinner && <p className="text-red-500">{errors.saturday_dinner.message}</p>}
               </div>
@@ -208,8 +216,8 @@ export default function SignupPage() {
             </div>
             {/* Extra snapsbiljetter */}
             <div className="form-question">
-              <label className="form-label">Extra snapsbiljetter</label>
-              <small className="form-answer-tip">En snaps ingår i middagspriset. Du kan köpa till upp till 3 extra snaps.</small>
+              <label className="form-label">Extra snapsbiljetter (50 kr/st)</label>
+              <small className="form-answer-tip">En snaps och en punch ingår i middagspriset. Du kan köpa till upp till 3 extra snaps.</small>
               <div className="form-answer-box">
                 <label className="form-answer-alternative">
                   <input type="radio" {...register("extra_snaps_tickets", { required: "Välj ett alternativ" })} value="0" />
@@ -232,7 +240,7 @@ export default function SignupPage() {
             </div>
 
             <div className="form-question">
-              <label className="form-label">Sexa</label>
+              <label className="form-label">Sexa (100 kr)</label>
               <div className="form-answer-box">
                 <label className="form-answer-alternative">
                   <input type="radio" {...register("sexa")} value="Öl" />
@@ -249,7 +257,7 @@ export default function SignupPage() {
               </div>
             </div>
             <div className="form-question">
-              <label className="form-label">Ordensmedalj</label>
+              <label className="form-label">Ordensmedalj (95 kr) </label>
               <div className="form-answer-box">
                 <label className="form-answer-alternative">
                   <input type="radio" {...register("medal", { required: "Välj ett alternativ" })} value="ja" />
@@ -320,14 +328,14 @@ export default function SignupPage() {
           {/* Anmälan till söndagsbrunchen */}
           <div className="form-group">
             <label className="form-section">Söndagen 2/10</label>
-            <label className="form-label">Vill du gå på Snörsjöbrunchen?</label>
+            <label className="form-label">Vill du gå på Snörsjöbrunchen? (100 kr)</label>
             <div className="form-answer-box">
               <label className="form-answer-alternative">
-                <input type="radio" {...register("brunch")} value="true" />
+                <input type="radio" {...register("brunch")} value="Ja" />
                 <span>Ja</span>
               </label>
               <label className="form-answer-alternative">
-                <input type="radio" {...register("brunch")} value="false" />
+                <input type="radio" {...register("brunch")} value="Nej" />
                 <span>Nej</span>
               </label>
             </div>
@@ -340,7 +348,7 @@ export default function SignupPage() {
             <div className="form-question">
               <label className="form-answer-alternative">
                 <input type="checkbox" {...register("nation_pin")} />
-                <span>Helsingkrona-pin</span>
+                <span>Helsingkrona-pin (40 kr)</span>
               </label>
             </div>
             <div className="form-question">
@@ -374,7 +382,7 @@ export default function SignupPage() {
           </div>
 
           {/* Submit */}
-          <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+          <button type="submit" className="bg-primaryBlue text-white py-2 px-4 rounded hover:bg-blue-600">
             Skicka anmälan
           </button>
         </form >
