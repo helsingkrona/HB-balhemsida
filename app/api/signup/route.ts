@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
     }
 
 
-    await appendSignUpToSheet(formData);
+    await appendSignUpToSheet(formData, " - Anmodan");
 
     return NextResponse.json({ message: "Success!" }, { status: 200 });
   } catch (error) {
