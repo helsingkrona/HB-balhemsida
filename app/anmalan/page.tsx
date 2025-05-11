@@ -20,7 +20,7 @@ export default function AnmalanPage() {
     console.log("Formulärdata:", data);
 
     //Skickar formulärsvaret till apiet
-    const response = await fetch("/api/signup", {
+    const response = await fetch("/api/signupAnmalan", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data),
@@ -38,7 +38,7 @@ export default function AnmalanPage() {
     <main>
       <div className="p-2"></div>
       <div className="max-w-2xl mx-auto p-6 bg-darkerGreen shadow-lg rounded-lg">
-        <h1 className="text-4xl font-bold text-textGreen text-center mb-4">Anmodan Snörsjöaorden</h1>
+        <h1 className="text-4xl font-bold text-textGreen text-center mb-4">Anmälan Snörsjöaorden</h1>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Personuppgifter och annat */}
