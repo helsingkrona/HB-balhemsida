@@ -9,8 +9,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        primaryBlue: "#22313f",
-        secondaryRed: "#d83d3d",
+        primaryBlue: "#001440",
+        secondaryRed: "#9a031e",
+        textGreen: "#505c3c",
+        formOrange: "#C76B3E",
+        formCream: "#F3E9DB",
+        amberGold: "#E1A948",
+        darkerGreen: "#b5c99a",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },

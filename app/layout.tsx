@@ -45,10 +45,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`h-screen flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
-        {children}
+        <div className="bg-white p-0.5">
+      </div>
+        <main className="flex-grow">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

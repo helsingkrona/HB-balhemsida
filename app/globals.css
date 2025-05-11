@@ -3,12 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --background: #A2CAE8;
+  --background: #e9f5db;
   --foreground: #171717;
+  --testjk: #505c3c; 
+}
+
+.striped-navbar {
+  background: repeating-linear-gradient(
+    135deg,
+    #b91c1ce0,         /* red */
+    #b91c1ce0 60px,
+    #1e3b8ad8 60px,    /* blue */
+    #1e3b8ad8 120px
+  );
+}
+
+.navbar-links {
+  @apply text-white text-xl hover:underline
+}
+
+.from-main {
+  @apply max-w-2xl mx-auto p-6 bg-formOrange shadow-lg rounded-lg
 }
 
 .form-group {
-  @apply border-primaryBlue border-2 rounded-md;
+  @apply rounded-md;
 }
 
 .form-label {
@@ -16,11 +35,11 @@
 }
 
 .form-question {
-  @apply bg-slate-100 m-1 rounded-md;
+  @apply m-1 rounded-md;
 }
 
 .form-section {
-  @apply block font-bold text-center;
+  @apply block font-bold text-xl text-center;
 }
 
 .form-answer-box {
@@ -32,11 +51,11 @@
 }
 
 .form-answer-tip {
-  @apply leading-none text-gray-500 block;
+  @apply leading-none text-gray-500 block pt-1;
 }
 
 .form-full-width {
-  @apply col-span-2 bg-slate-100 m-1 rounded-md;
+  @apply col-span-2 bg-formOrange m-1 rounded-md;
   display: flex;
   flex-direction: column; /* Stacks children vertically */
   align-items: center;    /* Centers items horizontally */

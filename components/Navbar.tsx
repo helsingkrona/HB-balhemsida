@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 const Navbar: React.FC = () => {
   return (
-    <nav className="bg-primaryBlue p-2">
+    <nav className="striped-navbar p-2">
       <div className="container mx-auto flex items-center justify-between">
         <div className="basis-1/5 flex justify-start">
           <a href="/">
@@ -17,16 +17,16 @@ const Navbar: React.FC = () => {
         </div>
         <ul className="basis-3/5 flex justify-center space-x-6">
           <li>
-            <Link href="/about" className="text-white hover:underline">Om</Link>
+            <Link href="/about" className="navbar-links">Om</Link>
           </li>
           <li>
-            <Link href="/anmalan" className="text-white hover:underline">Anmälan</Link>
+            <Link href="/anmalan" className="navbar-links">Anmälan</Link>
           </li>
           <li>
-            <Link href="/sponsorer" className="text-white hover:underline">Sponsorer</Link>
+            <Link href="/sponsorer" className="navbar-links">Sponsorer</Link>
           </li>
           <li>
-            <Link href="/contact" className="text-white hover:underline">Kontakt</Link>
+            <Link href="/contact" className="navbar-links">Kontakt</Link>
           </li>
         </ul>
         <div className="basis-1/5">
