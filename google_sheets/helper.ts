@@ -52,11 +52,11 @@ const auth = new google.auth.GoogleAuth({
 const sheets = google.sheets({ version: "v4", auth });
 
 // Convert SignUpFormData into a 2D array for Google Sheets
-function formatSignUpDataForSheets(formData: SignUpFormData): string[][] {
+function formatSignUpDataForSheets(formData: SignUpFormData, origin: string): string[][] {
   let now = new Date();
   let formattedDate = new Intl.DateTimeFormat("en-GB", options).format(now);
   const values = [
-    formattedDate,
+    formattedDate + origin,
     formData.first_name,
     formData.last_name,
     formData.email,
@@ -89,18 +89,18 @@ function formatSignUpDataForSheets(formData: SignUpFormData): string[][] {
 
 
 // Function to append data to Google Sheets
-export async function appendSignUpToSheet(formData: SignUpFormData) {
+export async function appendSignUpToSheet(formData: SignUpFormData, origin: string) {
 
-  writeToSheet(formData, "Anmälningar!A4")
+  writeToSheet(formData, "Anmälningar!A4", origin)
 
-  writeToSheet(formData, "[Skrivskyddad]Anmälningar!A1")
+  writeToSheet(formData, "[Skrivskyddad]Anmälningar!A1", origin)
   
 
-  async function writeToSheet(formData: SignUpFormData, range: string) {
+  async function writeToSheet(formData: SignUpFormData, range: string, origin: string) {
     try {
       const spreadsheetId = process.env.SHEET_ID!;
   
-      const formattedData = formatSignUpDataForSheets(formData);
+      const formattedData = formatSignUpDataForSheets(formData, origin);
   
       const result = await sheets.spreadsheets.values.append({
         spreadsheetId,
