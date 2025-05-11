@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
             <Link href="/sponsorer" className="navbar-links">Sponsorer</Link>
           </li>
           <li>
-            <Link href="/contact" className="navbar-links">Kontakt</Link>
+            <Link href="https://helsingkrona.se/sv/kontakta-oss" className="navbar-links">Kontakt</Link>
           </li>
         </ul>
         <div className="basis-1/5">
