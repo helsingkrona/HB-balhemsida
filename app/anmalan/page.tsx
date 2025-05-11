@@ -18,75 +18,6 @@ export default function BookOpeningAnimation() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  // Define your form structure with nested groups
-  const formStructure = [
-    {
-      sectionName: "Personuppgifter",
-      groups: [
-        {
-          groupName: "Kontaktinformation",
-          fields: ["first_name", "last_name", "title"],
-        },
-        {
-          groupName: "Adress",
-          fields: ["email", "address", "postal_code", "city"],
-        },
-      ],
-    },
-    {
-      sectionName: "Fredag",
-      groups: [
-        {
-          groupName: "Sittning",
-          fields: ["friday_dinner", "songbook"],
-        },
-      ],
-    },
-    {
-      sectionName: "Lördag",
-      groups: [
-        {
-          groupName: "Bal",
-          fields: ["saturday_dinner"],
-        },
-        {
-          groupName: "Preferenser",
-          fields: [
-            "food_preference",
-            "saturday_drink_preference",
-            "companion",
-            "group",
-            "grade",
-          ],
-        },
-        {
-          groupName: "Tillval",
-          fields: [
-            "alumni_drink",
-            "sexa",
-            "extra_snaps_tickets",
-            "baler",
-            "medal",
-            "nation_pin",
-          ],
-        },
-      ],
-    },
-    {
-      sectionName: "Söndag",
-      groups: [
-        {
-          groupName: "Brunch",
-          fields: ["brunch"],
-        },
-      ],
-    },
-    {
-      sectionName: "Övrigt",
-      fields: ["relationship_to_nation", "gdpr", "donation"],
-    },
-  ];
-
   // Field configuration
   const fieldConfig: {
     [key: string]: {
@@ -98,15 +29,23 @@ export default function BookOpeningAnimation() {
       min?: number;
     };
   } = {
-    first_name: { label: "Förnamn", type: "text", required: true },
-    last_name: { label: "Efternamn", type: "text", required: true },
+    first_name: {
+      label: "Förnamn",
+      type: "text",
+      required: true
+    },
+    last_name: {
+      label: "Efternamn",
+      type: "text",
+      required: true
+    },
     email: {
       label: "E-post",
       type: "email",
       required: true,
       tip: "Vi använder denna för att kontakta dig",
     },
-    title: { label: "Titel", type: "text", required: false, tip: "Frivillig"},
+    title: { label: "Titel", type: "text", required: false, tip: "Frivillig" },
     address: { label: "Gatuadress", type: "text", required: true },
     postal_code: {
       label: "Postnummer",
@@ -190,8 +129,8 @@ export default function BookOpeningAnimation() {
         "Äldre",
       ],
       required: true,
-      tip: "Om detta är din femte eller mer än det bal och du har inte jägarmedaljen och vill ta dig an utmaningen skriv till Övermarskalk?" + 
-            "(Ska du plantera träd var god kontakta kurator via mail q@helidngkorn.se)"
+      tip: "Om detta är din femte eller mer än det bal och du har inte jägarmedaljen och vill ta dig an utmaningen skriv till Övermarskalk?" +
+        "(Ska du plantera träd var god kontakta kurator via mail q@helidngkorn.se)"
     },
     alumni_drink: {
       label: "Alumnidrink",
@@ -252,6 +191,75 @@ export default function BookOpeningAnimation() {
       required: false,
     },
   };
+  
+  // Define your form structure with nested groups
+  const formStructure = [
+    {
+      sectionName: "Personuppgifter",
+      groups: [
+        {
+          groupName: "Kontaktinformation",
+          fields: ["first_name", "last_name", "title"],
+        },
+        {
+          groupName: "Adress",
+          fields: ["email", "address", "postal_code", "city"],
+        },
+      ],
+    },
+    {
+      sectionName: "Fredag",
+      groups: [
+        {
+          groupName: "Sittning",
+          fields: ["friday_dinner", "songbook"],
+        },
+      ],
+    },
+    {
+      sectionName: "Lördag",
+      groups: [
+        {
+          groupName: "Bal",
+          fields: ["saturday_dinner"],
+        },
+        {
+          groupName: "Preferenser",
+          fields: [
+            "food_preference",
+            "saturday_drink_preference",
+            "companion",
+            "group",
+            "grade",
+          ],
+        },
+        {
+          groupName: "Tillval",
+          fields: [
+            "alumni_drink",
+            "sexa",
+            "extra_snaps_tickets",
+            "baler",
+            "medal",
+            "nation_pin",
+          ],
+        },
+      ],
+    },
+    {
+      sectionName: "Söndag",
+      groups: [
+        {
+          groupName: "Brunch",
+          fields: ["brunch"],
+        },
+      ],
+    },
+    {
+      sectionName: "Övrigt",
+      fields: ["relationship_to_nation", "gdpr", "donation"],
+    },
+  ];
 
   const defaultConfig = { type: "text", required: false };
 
@@ -323,7 +331,7 @@ export default function BookOpeningAnimation() {
     fields?: string[];
   }
 
-  const renderField = (fieldName: string, isSingleField: boolean) => {
+  const renderField = (fieldName: string) => {
     const config: FieldConfig = fieldConfig[fieldName] || {
       ...defaultConfig,
       label: formatLabel(fieldName),
@@ -334,9 +342,7 @@ export default function BookOpeningAnimation() {
         return (
           <motion.div
             key={fieldName}
-            className={`form-question ${
-              isSingleField ? "form-full-width" : ""
-            }`}
+            className={`form-question`}
             variants={itemVariants}
           >
             <label className="form-label">{config.label}</label>
@@ -366,12 +372,10 @@ export default function BookOpeningAnimation() {
         return (
           <motion.div
             key={fieldName}
-            className={`form-question ${
-              isSingleField ? "form-full-width" : ""
-            }`}
+            className={`form-question`}
             variants={itemVariants}
           >
-            <div className="form-answer-alternative">
+            <div className="form-question">
               <input
                 type="checkbox"
                 {...register(fieldName as keyof SignUpFormData, {
@@ -394,9 +398,7 @@ export default function BookOpeningAnimation() {
         return (
           <motion.div
             key={fieldName}
-            className={`form-question ${
-              isSingleField ? "form-full-width" : ""
-            }`}
+            className={`form-question`}
             variants={itemVariants}
           >
             <label className="form-label">{config.label}</label>
@@ -429,9 +431,7 @@ export default function BookOpeningAnimation() {
         return (
           <motion.div
             key={fieldName}
-            className={`form-question ${
-              isSingleField ? "form-full-width" : ""
-            }`}
+            className={`form-question`}
             variants={itemVariants}
           >
             <label className="form-label">{config.label}</label>
@@ -466,7 +466,6 @@ export default function BookOpeningAnimation() {
   }
 
   const renderGroup = ({ group }: GroupProps) => {
-    const isSingleField = group.fields.length === 1;
     return (
       <motion.div
         key={group.groupName}
@@ -478,9 +477,9 @@ export default function BookOpeningAnimation() {
             {group.groupName}
           </h4>
         )}
-        <div className="form-answer-box">
+        <div className="form-question">
           {group.fields.map((fieldName) =>
-            renderField(fieldName, isSingleField)
+            renderField(fieldName)
           )}
         </div>
       </motion.div>
@@ -533,9 +532,9 @@ export default function BookOpeningAnimation() {
                 section.groups.map((group) => renderGroup({ group }))
               ) : (
                 // Otherwise render fields directly
-                <div className="form-answer-box">
+                <div className="form-full-width">
                   {section.fields?.map((fieldName) =>
-                    renderField(fieldName, section.fields.length === 1)
+                    renderField(fieldName)
                   )}
                 </div>
               )}
@@ -545,11 +544,10 @@ export default function BookOpeningAnimation() {
           <motion.button
             type="submit"
             disabled={isSubmitting}
-            className={`bg-blue-500 text-white py-2 px-4 rounded ${
-              isSubmitting
+            className={`bg-blue-500 text-white py-2 px-4 rounded ${isSubmitting
                 ? "opacity-70 cursor-not-allowed"
                 : "hover:bg-blue-600"
-            }`}
+              }`}
             variants={itemVariants}
           >
             {isSubmitting ? (

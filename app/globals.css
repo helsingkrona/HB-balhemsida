@@ -51,14 +51,14 @@
 }
 
 .form-answer-tip {
-  @apply leading-none text-gray-500 block pt-1;
+  @apply leading-none text-gray-500 block pt-1 text-sm; /* Tailwind utility for smaller text */
 }
 
 .form-full-width {
-  @apply col-span-2 bg-formOrange m-1 rounded-md;
+  @apply col-span-2 m-1 rounded-md;
   display: flex;
   flex-direction: column; /* Stacks children vertically */
-  align-items: center;    /* Centers items horizontally */
+  align-items: left;    /* Centers items horizontally */
   padding: 1rem;
   margin: 1rem auto;
 }
