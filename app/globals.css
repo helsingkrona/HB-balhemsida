@@ -59,7 +59,6 @@ body {
 
 .form-question {
   @apply m-1 rounded-md;
-  background-color: var(--input-bg);
 }
 
 .form-section {

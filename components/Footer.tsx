@@ -3,7 +3,7 @@ import Link from "next/link";
 const Footer: React.FC = () => {
     return (
 
-        <footer className="row-start-3 bg-secondaryRed flex gap-6 pt-1 flex-wrap items-center justify-between h-24">
+        <footer className="row-start-3 striped-navbar flex gap-6 pt-1 flex-wrap items-center justify-between h-24">
             <a className="items-center flex p-3">
                 <Image
                     aria-hidden
