@@ -105,14 +105,14 @@ export default function BookOpeningAnimation() {
       type: "select",
       options: ["0", "1", "2", "3"],
       required: false,
-      tip: "Antal extra snapsbiljett (40 kr/st)",
+      tip: "Antal extra snapsbiljett (50 kr/st)",
     },
     songbook: {
       label: "Vill du ha en sångbok?",
       type: "radio",
       options: ["Ja", "Nej"],
       required: false,
-      tip: "60kr, Sångboken kommer fås i samband med sittningen Fredag 3/10"
+      tip: "70 kr, Sångboken kommer fås i samband med sittningen Fredag 3/10"
     },
     friday_dinner: {
       label: "Vill du gå på Snörsjöasittningen?",
@@ -171,7 +171,7 @@ export default function BookOpeningAnimation() {
     medal: {
       label: "Medalj",
       type: "radio",
-      options: ["Byta in (Gratis)", "Ja (100kr)", "Nej"],
+      options: ["Byta in (Gratis)", "Ja (95 kr)", "Nej"],
       required: false,
       tip: "Du har eget ansvar att byta i din medalj på expeditionstid. köper du medalj får du den i kuvertet på balen. (Observera att den 5 E MEDALJEN ÄR DEN SISTA MEDALJEN MAN KAN FÅ)",
     },
@@ -182,7 +182,7 @@ export default function BookOpeningAnimation() {
       tip: "100 kr",
     },
     donation: {
-      label: "Donation (minst 250kr)",
+      label: "Donation (minst 250 kr)",
       type: "text",
       required: false,
       min: 0,
