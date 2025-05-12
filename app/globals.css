@@ -44,7 +44,6 @@ body {
 
 .from-main {
   @apply max-w-2xl mx-auto p-6 shadow-lg rounded-lg;
-  background-color: var(--input-bg);
 }
 
 .form-group {
@@ -52,8 +51,7 @@ body {
 }
 
 .form-label {
-  @apply block font-medium pt-2;
-  color: var(--accent-green);
+  @apply block text-deepForestGreen text-lg font-medium pt-2;
 }
 
 .form-question {
@@ -61,8 +59,7 @@ body {
 }
 
 .form-section {
-  @apply block font-bold text-xl text-center mb-2;
-  color: var(--accent-green);
+  @apply block font-bold text-xl text-center mb-2 text-deepForestGreen;
 }
 
 .form-answer-box {
@@ -70,7 +67,7 @@ body {
 }
 
 .form-answer-alternative {
-  @apply flex items-center space-x-2;
+  @apply flex items-center text-deepForestGreen space-x-2;
 }
 
 .form-answer-tip {

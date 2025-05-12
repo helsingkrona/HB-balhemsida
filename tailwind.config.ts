@@ -17,6 +17,7 @@ export default {
         amberGold: "#E1A948",
         darkerGreen: "#b5c99a",
         backgroundGreen: "#2E4E3F",
+        deepForestGreen: "#2E4E3F",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
