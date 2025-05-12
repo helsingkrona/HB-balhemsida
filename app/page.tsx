@@ -1,8 +1,4 @@
-
 import Banner from "@/components/Banner";
-
-
-
 
 export default function Home() {
   return (
@@ -12,7 +8,7 @@ export default function Home() {
 
       <main>
         <div className="container mx-auto px-4 py-8">
-          <h2 className="text-4xl font-bold text-center mb-6">Helgens festligheter</h2>
+          <h2 className="text-4xl text-white font-bold text-center mb-6">Helgens festligheter</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Friday Column */}
