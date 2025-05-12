@@ -40,6 +40,8 @@ export interface SignUpFormData {
   gdpr?: boolean;
   is_paying_guest: boolean;
   total_cost: number;
+  food_preference_options: string;
+  food_preference_custom: string;
 }
 
 // Google Sheets Auth
