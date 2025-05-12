@@ -16,6 +16,7 @@ export default {
         formCream: "#F3E9DB",
         amberGold: "#E1A948",
         darkerGreen: "#b5c99a",
+        backgroundGreen: "#2E4E3F",
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
