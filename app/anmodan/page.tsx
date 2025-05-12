@@ -116,7 +116,7 @@ export default function SignupPage() {
             <div>
               <label className="form-label">Relation till nationen</label>
               <input {...register("relationship_to_nation", { required: "Relation till nationen är obligatoriskt" })}
-              className="border p-2 w-full rounded" />
+                className="border p-2 w-full rounded" />
               <small className="form-answer-tip">Exempelvis: förman, kurator emeritus/emerita, boende m.m.</small>
               {errors.relationship_to_nation && <p className="text-red-500">{errors.relationship_to_nation.message}</p>}
             </div>
@@ -145,17 +145,17 @@ export default function SignupPage() {
           <div className="form-group">
             <label className="form-section">Fredagen 31/9</label>
             <div className="form-question">
-            <label className="form-label">Vill du gå på Snörsjöasittningen (230 kr)?</label>
-            <div className="form-answer-box">
-              <label className="form-answer-alternative">
-                <input type="radio" {...register("friday_dinner")} value="Ja" />
-                <span>Ja</span>
-              </label>
-              <label className="form-answer-alternative">
-                <input type="radio" {...register("friday_dinner")} value="Nej" />
-                <span>Nej</span>
-              </label>
-            </div>
+              <label className="form-label">Vill du gå på Snörsjöasittningen (230 kr)?</label>
+              <div className="form-answer-box">
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("friday_dinner")} value="Ja" />
+                  <span>Ja</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("friday_dinner")} value="Nej" />
+                  <span>Nej</span>
+                </label>
+              </div>
             </div>
             <div className="form-question">
               <label className="form-answer-alternative">
@@ -166,7 +166,7 @@ export default function SignupPage() {
             </div>
           </div>
           {/* Anmälan till balen */}
-          <div className=" border-primaryBlue border-2 rounded-md">
+          <div className=" border-backgroundGreen border-2 rounded-md">
             <label className="form-section">Lördagen 1/10</label>
             <div className="form-question">
               <label className="form-label">Prisgrupp</label>
@@ -348,7 +348,7 @@ export default function SignupPage() {
             <div className="form-question">
               <label className="form-answer-alternative">
                 <input type="checkbox" {...register("nation_pin")} />
-                <span>Helsingkrona-pin (40 kr)</span>
+                <span>Helsingkrona-pin (20 kr)</span>
               </label>
             </div>
             <div className="form-question">
@@ -360,15 +360,8 @@ export default function SignupPage() {
               </label>
             </div>
             <div>
-
             </div>
           </div>
-
-
-
-
-
-
           <div>
             {/* GDPR Checkbox */}
             <label className="form-answer-alternative">
@@ -387,6 +380,7 @@ export default function SignupPage() {
           </button>
         </form >
       </div >
+      <div className="p-2"></div>
     </main>
   );
 }
