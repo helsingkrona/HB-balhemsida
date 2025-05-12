@@ -1,9 +1,6 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-
-
-
 import { SignUpFormData } from "@/google_sheets/helper";
 
 export default function SignupPage() {
@@ -16,6 +13,15 @@ export default function SignupPage() {
 
   const onSubmit = async (data: SignUpFormData) => {
 
+    const selectedOptions = data.food_preference_options || [];  // fallback if nothing is checked
+    const custom = data.food_preference_custom || "";            // fallback if nothing typed
+
+    // ✅ Combine into one string
+    const allPreferences = [...selectedOptions, custom.trim()]
+      .filter(Boolean) // remove empty strings
+      .join(", ");
+
+    data.food_preference = allPreferences;
     //Skickar formulärsvaret till ´consollen i webläsaren för felsökning, plocka bort innan prod.
     console.log("Formulärdata:", data);
 
@@ -138,7 +144,23 @@ export default function SignupPage() {
             {/* Matpreferenser */}
             <div>
               <label className="form-label">Matpreferens</label>
-              <input {...register("food_preference")} className="border p-2 w-full rounded" />
+
+              <div className="form-answer-box">
+                {["Vegetarian", "Vegan", "Gluten", "Laktos"].map((option) => (
+                  <label key={option} className="form-answer-alternative">
+                    <input
+                      type="checkbox"
+                      value={option}
+                      {...register("food_preference_options")}
+                      className="accent-deepForestGreen"
+                    />
+                    {option}
+                  </label>
+                ))}
+              </div>
+              <label className="form-answer-tip">Ange andra preferenser (t.ex. inga nötter)</label>
+              <input {...register("food_preference_custom")} className="border p-2 w-full rounded" />
+
             </div>
           </div>
           {/* Anmälan till fredagssittningen */}
@@ -171,11 +193,11 @@ export default function SignupPage() {
             <div className="form-question">
               <label className="form-label">Prisgrupp</label>
               <div className="form-answer-box">
-                <label className="flex items-center gap-1 space-x-2">
+                <label className="form-answer-alternative">
                   <input type="radio" {...register("saturday_dinner", { required: "Välj ett alternativ" })} value="Student" />
-                  <span>Student (915 kr)</span>
+                  <span>Student 915 kr</span>
                 </label>
-                <label className="flex items-center gap-1 space-x-2">
+                <label className="form-answer-alternative ">
                   <input type="radio" {...register("saturday_dinner", { required: "Välj ett alternativ" })} value="Icke-student" />
                   <span>Icke-student 1070 kr</span>
                 </label>
@@ -300,7 +322,7 @@ export default function SignupPage() {
                     />
                     <label
                       htmlFor={`grad${option.value}`}
-                      className="ml-2 text-gray-900"
+                      className="ml-2 text-deepForestGreen"
                     >
                       {option.label}
                     </label>
