@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 const Navbar: React.FC = () => {
   return (
-    <nav className="striped-navbar p-2">
+    <nav className="bg-blue-950 p-2">
       <div className="container mx-auto flex items-center justify-between">
         <div className="basis-1/5 flex justify-start">
           <Link href="/">
@@ -16,6 +16,9 @@ const Navbar: React.FC = () => {
 
         </div>
         <ul className="basis-3/5 flex justify-center space-x-6">
+          <li>
+            <Link href="/" className="navbar-links">Start</Link>
+          </li>
           <li>
             <Link href="/about" className="navbar-links">Om</Link>
           </li>

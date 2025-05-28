@@ -3,7 +3,7 @@ import Image from "next/image";
 const Footer: React.FC = () => {
     return (
 
-        <footer className="row-start-3 striped-navbar flex flex-col sm:flex-row flex-wrap items-center justify-between gap-4 p-4 sm:h-24">
+        <footer className="row-start-3 bg-red-900 flex flex-col sm:flex-row flex-wrap items-center justify-between gap-4 p-4">
             <a className="items-center flex p-3">
                 <Image
                     aria-hidden
