@@ -45,14 +45,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`h-screen flex flex-col ${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+        className={`min-h-screen flex flex-col bg-fixed bg-cover bg-center ${geistSans.variable} ${geistMono.variable} antialiased`}
+        style={{ backgroundImage: "url('/trees.jpg')" }}>
         <Navbar />
-        
+
         <main className="flex-grow">
           {children}
         </main>
-        <Footer />
+        <footer className="mt-auto">
+          <Footer />
+        </footer>
       </body>
     </html>
   );

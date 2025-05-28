@@ -13,6 +13,16 @@
   --input-bg: #f5e4d3;
 }
 
+.signup-background {
+  background-image: url('/trees.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
 .striped-navbar {
   background: repeating-linear-gradient(
     135deg,
