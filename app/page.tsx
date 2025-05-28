@@ -3,14 +3,14 @@ import Banner from "@/components/Banner";
 export default function Home() {
   return (
     <>
+      <main className="bg-blue-950">  
+        <Banner />
 
-      <Banner />
 
-      <main>
-        <div className="container mx-auto px-4 py-8">
-          <h2 className="text-4xl text-white font-bold text-center mb-6">Helgens festligheter</h2>
+        <div className="container mx-auto px-4 pt-4 pb-16">
+          <h2 className="text-4xl text-white font-bold text-center">Helgens festligheter</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
             {/* Friday Column */}
             <div className="bg-white shadow-lg rounded-2xl p-6">
               <h3 className="text-2xl font-semibold text-center text-blue-700 mb-4">
