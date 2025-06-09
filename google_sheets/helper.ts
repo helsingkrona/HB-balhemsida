@@ -1,6 +1,5 @@
 // google_sheets/helper.ts
 import { google } from "googleapis";
-import fs from "fs";
 
 const options: Intl.DateTimeFormatOptions = {
   year: "numeric",
