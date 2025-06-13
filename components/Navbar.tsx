@@ -26,9 +26,6 @@ const Navbar: React.FC = () => {
             <Link href="/anmalan" className="navbar-links">Anmälan</Link>
           </li>
           <li>
-            <Link href="/sponsorer" className="navbar-links">Sponsorer</Link>
-          </li>
-          <li>
             <Link href="https://helsingkrona.se/sv/kontakta-oss" className="navbar-links">Kontakt</Link>
           </li>
         </ul>
