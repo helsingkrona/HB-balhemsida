@@ -65,6 +65,7 @@ export default function SignupPage() {
             <div>
               <label className="form-label">Titel</label>
               <input {...register("title")} className="border p-2 w-full rounded" />
+              <small className="form-answer-tip">Exempelvis: kurator emeritus/emerita, PQS XX nation, m.m.</small>
             </div>
 
             {/* E-post */}
@@ -142,7 +143,7 @@ export default function SignupPage() {
           </div>
           {/* Anmälan till fredagssittningen */}
           <div className="form-group">
-            <label className="form-section">Fredagen 31/9</label>
+            <label className="form-section">Fredagen 3/10</label>
             <div className="form-question">
             <label className="form-label">Vill du gå på Snörsjöasittningen?</label>
             <div className="form-answer-box">
@@ -166,7 +167,7 @@ export default function SignupPage() {
           </div>
           {/* Anmälan till balen */}
           <div className="rounded-md">
-            <label className="form-section">Lördagen 1/10</label>
+            <label className="form-section">Lördagen 4/10</label>
 
            {/*} <div className="form-question">
               <label className="form-label">Prisgrupp</label>
@@ -273,7 +274,7 @@ export default function SignupPage() {
                 </label>
               </div>
               <small className="form-answer-tip">Det är ditt egna ansvar att byta in din medalj under <a target="_blank"
-                href="https://helsingkrona.se/sv/kontakta-oss" className="text-blue-500 underline">expeditionstid</a>. Väljer du att köpa en medalj så kommer du få den i ditt kuvert på balen.</small>
+                href="https://helsingkrona.se/sv/kontakta-oss" className="text-blue-500 underline">expeditionstid</a>. Väljer du att köpa en medalj så kommer du få den i ditt kuvert på balen. OBS femte medaljen är den sista medaljen man kan få.</small>
 
               {errors.medal && <p className="text-red-500">{errors.medal.message}</p>}
             </div>
@@ -287,8 +288,7 @@ export default function SignupPage() {
                   { value: "3", label: "3:e Ståndet Flottare (3:e balen)" },
                   { value: "4", label: "2:a Ståndet Rallare (4:e balen)" },
                   { value: "5", label: "1:a Ståndet Jägare (5:e balen)" },
-                  { value: "6", label: "Trädplanterare" },
-                  { value: "7", label: "Äldre" },
+                  { value: "6", label: "Äldre" },
                 ].map((option) => (
                   <div key={option.value} className="flex items-center">
                     <input
@@ -327,7 +327,7 @@ export default function SignupPage() {
 
           {/* Anmälan till söndagsbrunchen */}
           <div className="form-group">
-            <label className="form-section">Söndagen 2/10</label>
+            <label className="form-section">Söndagen 5/10</label>
             <label className="form-label">Vill du gå på Snörsjöbrunchen?</label>
             <div className="form-answer-box">
               <label className="form-answer-alternative">
