@@ -373,7 +373,7 @@ export default function AnmalanPage() {
               </label>
             </div>
             <div className="form-question">
-              <label className="form-label">Donation (minst 250 kr)
+              <label className="form-label">Donation
                 <input
                   {...register("donation")}
                   className="border p-2 w-full rounded"
