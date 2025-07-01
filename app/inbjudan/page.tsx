@@ -38,13 +38,14 @@ export default function SignupPage() {
       <div className="p-2"></div>
       <div className="max-w-2xl mx-auto p-6 bg-darkerGreen shadow-lg rounded-lg">
         <h1 className="text-4xl font-bold text-textGreen text-center mb-4">Inbjudan Snörsjöaorden</h1>
+        <small className="form-answer-tip">Obligatoriska fält markeras med *</small>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {/* Personuppgifter och annat */}
           <div className="form-group">
             {/* Namn */}
             <div>
-              <label className="form-label">Förnamn</label>
+              <label className="form-label">Förnamn *</label>
               <input
                 {...register("first_name", { required: "Förnamn är obligatoriskt" })}
                 className="border p-2 w-full rounded"
@@ -53,7 +54,7 @@ export default function SignupPage() {
             </div>
 
             <div>
-              <label className="form-label">Efternamn</label>
+              <label className="form-label">Efternamn *</label>
               <input
                 {...register("last_name", { required: "Efternamn är obligatoriskt" })}
                 className="border p-2 w-full rounded"
@@ -70,7 +71,7 @@ export default function SignupPage() {
 
             {/* E-post */}
             <div>
-              <label className="form-label">E-postadress</label>
+              <label className="form-label">E-postadress *</label>
               <input
                 type="email"
                 {...register("email", { required: "E-post är obligatoriskt" })}
@@ -83,7 +84,7 @@ export default function SignupPage() {
 
             {/* Adress */}
             <div>
-              <label className="form-label">Adress</label>
+              <label className="form-label">Adress *</label>
               <input
                 {...register("address", { required: "Adress är obligatoriskt" })}
                 className="border p-2 w-full rounded"
@@ -94,7 +95,7 @@ export default function SignupPage() {
             {/* Postnummer & Stad */}
             <div className="flex gap-4">
               <div className="flex-1">
-                <label className="form-label">Postnummer</label>
+                <label className="form-label">Postnummer *</label>
                 <input
                   {...register("postal_code", { required: "Postnummer är obligatoriskt" })}
                   className="border p-2 w-full rounded"
@@ -103,7 +104,7 @@ export default function SignupPage() {
               </div>
 
               <div className="flex-1">
-                <label className="form-label">Ort</label>
+                <label className="form-label">Ort *</label>
                 <input
                   {...register("city", { required: "Ort är obligatoriskt" })}
                   className="border p-2 w-full rounded"
@@ -114,9 +115,9 @@ export default function SignupPage() {
 
             {/* Relation till nationen */}
             <div>
-              <label className="form-label">Relation till nationen</label>
+              <label className="form-label">Relation till nationen *</label>
               <input {...register("relationship_to_nation", { required: "Relation till nationen är obligatoriskt" })}
-              className="border p-2 w-full rounded" />
+                className="border p-2 w-full rounded" />
               <small className="form-answer-tip">Exempelvis: förman, kurator emeritus/emerita, boende m.m.</small>
               {errors.relationship_to_nation && <p className="text-red-500">{errors.relationship_to_nation.message}</p>}
             </div>
@@ -145,17 +146,17 @@ export default function SignupPage() {
           <div className="form-group">
             <label className="form-section">Fredagen 3/10</label>
             <div className="form-question">
-            <label className="form-label">Vill du gå på Snörsjöasittningen?</label>
-            <div className="form-answer-box">
-              <label className="form-answer-alternative">
-                <input type="radio" {...register("friday_dinner")} value="Ja" />
-                <span>Ja</span>
-              </label>
-              <label className="form-answer-alternative">
-                <input type="radio" {...register("friday_dinner")} value="Nej" />
-                <span>Nej</span>
-              </label>
-            </div>
+              <label className="form-label">Vill du gå på Snörsjöasittningen?</label>
+              <div className="form-answer-box">
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("friday_dinner")} value="Ja" />
+                  <span>Ja</span>
+                </label>
+                <label className="form-answer-alternative">
+                  <input type="radio" {...register("friday_dinner")} value="Nej" />
+                  <span>Nej</span>
+                </label>
+              </div>
             </div>
             <div className="form-question">
               <label className="form-answer-alternative">
@@ -169,7 +170,7 @@ export default function SignupPage() {
           <div className="rounded-md">
             <label className="form-section">Lördagen 4/10</label>
 
-           {/*} <div className="form-question">
+            {/*} <div className="form-question">
               <label className="form-label">Prisgrupp</label>
               <div className="form-answer-box">
                 <label className="flex items-center gap-1 space-x-2">
@@ -194,7 +195,7 @@ export default function SignupPage() {
 
 
             <div className="form-question">
-              <label className="form-label">Dryckespreferens</label>
+              <label className="form-label">Dryckespreferens *</label>
               <div className="form-answer-box">
                 <label className="form-answer-alternative">
                   <input type="radio" {...register("saturday_drink_preference", { required: "Välj ett alternativ" })} value="Öl" />
@@ -258,7 +259,7 @@ export default function SignupPage() {
               </div>
             </div>
             <div className="form-question">
-              <label className="form-label">Ordensmedalj</label>
+              <label className="form-label">Ordensmedalj *</label>
               <div className="form-answer-box">
                 <label className="form-answer-alternative">
                   <input type="radio" {...register("medal", { required: "Välj ett alternativ" })} value="ja" />
@@ -280,7 +281,7 @@ export default function SignupPage() {
             </div>
 
             <div className="form-question">
-              <label className="form-label">Grad - Den du uppnår på denna bal</label>
+              <label className="form-label">Grad - Den du uppnår på denna bal *</label>
               <div className="space-y-2">
                 {[
                   { value: "1", label: "5:e Ståndet Torvvändare (1:a balen)" },
@@ -354,21 +355,19 @@ export default function SignupPage() {
             <div className="form-question">
               <label className="form-label">Donation
                 <input
-                  {...register("donation")}
+                  type="number"
+                  {...register("donation", {
+                    valueAsNumber: true,
+                  })}
                   className="border p-2 w-full rounded"
                 />
               </label>
+              <small className="form-answer-tip">Beloppet skrivs enbart med siffror och läggs till på den totala kostnaden.</small>
             </div>
             <div>
 
             </div>
           </div>
-
-
-
-
-
-
           <div>
             {/* GDPR Checkbox */}
             <label className="form-answer-alternative">
@@ -376,7 +375,7 @@ export default function SignupPage() {
                 type="checkbox"
                 {...register("gdpr", { required: "Du måste godkänna GDPR-policyn" })}
               />
-              <span>Jag godkänner att Helsingkrona nation sparar mina uppgifter i enlighet med GDPR</span>
+              <span>Jag godkänner att Helsingkrona nation sparar mina uppgifter i enlighet med GDPR *</span>
             </label>
             {errors.gdpr && <p className="text-red-500">{errors.gdpr.message}</p>}
           </div>
