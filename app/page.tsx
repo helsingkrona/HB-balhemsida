@@ -20,7 +20,7 @@ export default function Home() {
           </h1>
 
           {/* Countdown Timer */}
-          <CountdownServer />
+          {/*<CountdownServer />*/}
         </div>
 
 
