@@ -3,9 +3,11 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { SignUpFormData } from "@/google_sheets/helper";
+import { useRouter } from "next/navigation";
 
 export default function AnmalanPage() {
   const [isVisible, setIsVisible] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const now = new Date();
@@ -23,6 +25,16 @@ export default function AnmalanPage() {
 
   const onSubmit = async (data: SignUpFormData) => {
 
+    const selectedOptions = data.food_preference_options || [];  // fallback if nothing is checked
+    const custom = data.food_preference_custom || "";            // fallback if nothing typed
+
+    // ✅ Combine into one string
+    const allPreferences = [...selectedOptions, custom.trim()]
+      .filter(Boolean) // remove empty strings
+      .join(", ");
+
+    data.food_preference = allPreferences;
+
     //Skickar formulärsvaret till ´consollen i webläsaren för felsökning, plocka bort innan prod.
     console.log("Formulärdata:", data);
 
@@ -34,7 +46,7 @@ export default function AnmalanPage() {
     });
 
     if (response.ok) {
-      alert("Din anmälan har skickats!");
+      router.push("/tack");
       // Poteniellt maila andressen script
     } else {
       alert("Något har gått fel, försök igen. Om felet kvarstår kontakta it@helsingkrona.se");

@@ -1,11 +1,14 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 
 import { SignUpFormData } from "@/google_sheets/helper";
 
 export default function SignupPage() {
+
+   const router = useRouter();
 
   const {
     register,
@@ -26,8 +29,7 @@ export default function SignupPage() {
     });
 
     if (response.ok) {
-      alert("Din anmälan har skickats!");
-      // Poteniellt maila andressen script
+      router.push("/tack");
     } else {
       alert("Något har gått fel, försök igen. Om felet kvarstår kontakta it@helsingkrona.se");
     }

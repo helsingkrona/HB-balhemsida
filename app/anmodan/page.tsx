@@ -2,8 +2,10 @@
 
 import { useForm } from "react-hook-form";
 import { SignUpFormData } from "@/google_sheets/helper";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
+  const router = useRouter();
 
   const {
     register,
@@ -22,7 +24,7 @@ export default function SignupPage() {
       .join(", ");
 
     data.food_preference = allPreferences;
-    //Skickar formulärsvaret till ´consollen i webläsaren för felsökning, plocka bort innan prod.
+    //Skickar formulärsvaret till consollen i webläsaren för felsökning, plocka bort innan prod.
     console.log("Formulärdata:", data);
 
     //Skickar formulärsvaret till apiet
@@ -33,8 +35,7 @@ export default function SignupPage() {
     });
 
     if (response.ok) {
-      alert("Din anmälan har skickats!");
-      // Poteniellt maila andressen script
+      router.push("/tack");
     } else {
       alert("Något har gått fel, försök igen. Om felet kvarstår kontakta it@helsingkrona.se");
     }
