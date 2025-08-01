@@ -12,7 +12,7 @@ export default function AnmalanPage() {
   //Hanterar hurvida den öppna anmälan ska vara öppen eller inte
   useEffect(() => {
     const now = new Date();
-    const openDate = new Date("2025-08-18T00:00:00"); // Datum anmälan ska öppna
+    const openDate = new Date("2025-08-25T00:00:00"); // Datum anmälan ska öppna
     if (now >= openDate) {
       setIsVisible(true);
     }
