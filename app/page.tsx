@@ -32,7 +32,7 @@ export default function Home() {
             {/* Friday Column */}
             <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6">
               <h3 className="text-2xl text-blue-950 font-semibold text-center mb-4">
-                Fredag 4 oktober
+                Fredag 3 oktober
               </h3>
               <ul className="space-y-2 text-black">
                 <li>Snörsjöasittning - 18:00</li>
@@ -44,7 +44,7 @@ export default function Home() {
             {/* Saturday Column */}
             <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6">
               <h3 className="text-2xl font-semibold text-center text-blue-950 mb-4">
-                Lördag 5 oktober
+                Lördag 4 oktober
               </h3>
               <ul className="space-y-2 text-black">
                 <li>Dörrarna öppnar - 16.30</li>
@@ -55,7 +55,7 @@ export default function Home() {
             {/* Sunday Column */}
             <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6">
               <h3 className="text-2xl font-semibold text-center text-blue-950 mb-4">
-                Söndag 6 oktober
+                Söndag 5 oktober
               </h3>
               <ul className="space-y-2 text-black">
                 <li>Balbrunch - 12:00</li>
