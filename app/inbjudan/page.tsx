@@ -2,8 +2,6 @@
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-
-
 import { SignUpFormData } from "@/google_sheets/helper";
 
 export default function SignupPage() {
@@ -28,6 +26,7 @@ export default function SignupPage() {
       body: JSON.stringify(data),
     });
 
+    //Skickar användaren till tack-sidan
     if (response.ok) {
       router.push("/tack");
     } else {

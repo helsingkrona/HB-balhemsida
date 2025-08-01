@@ -15,15 +15,14 @@ export default function SignupPage() {
 
   const onSubmit = async (data: SignUpFormData) => {
 
-    const selectedOptions = data.food_preference_options || [];  // fallback if nothing is checked
-    const custom = data.food_preference_custom || "";            // fallback if nothing typed
-
-    // ✅ Combine into one string
+    //Hanterar matpreferenser
+    const selectedOptions = data.food_preference_options || [];  
+    const custom = data.food_preference_custom || "";            
     const allPreferences = [...selectedOptions, custom.trim()]
       .filter(Boolean) // remove empty strings
       .join(", ");
-
     data.food_preference = allPreferences;
+
     //Skickar formulärsvaret till consollen i webläsaren för felsökning, plocka bort innan prod.
     console.log("Formulärdata:", data);
 
@@ -34,6 +33,7 @@ export default function SignupPage() {
       body: JSON.stringify(data),
     });
 
+    //Skickar användaren till tack-sidan.
     if (response.ok) {
       router.push("/tack");
     } else {

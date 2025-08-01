@@ -6,11 +6,11 @@ export async function POST(req: NextRequest) {
   try {
     const formData: SignUpFormData = await req.json();
 
-    //Fake as fuck det krävs fler fält, lita inte på chatten
+    //Behövs inte, input-hanteringen sköts av formuläret och helper.ts
     if (!formData.first_name || !formData.email) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
-
+    //Används inte, ta bort
     if(formData.is_paying_guest){
       
     }

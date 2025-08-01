@@ -1,6 +1,6 @@
-// google_sheets/helper.ts
 import { google } from "googleapis";
 
+// Konfiguration för hur tiden/datumet anmälan inkommer ska visas.
 const options: Intl.DateTimeFormatOptions = {
   year: "numeric",
   month: "numeric",
@@ -12,6 +12,7 @@ const options: Intl.DateTimeFormatOptions = {
   timeZone: "Europe/Stockholm"
 }
 
+//Interface för att hantera datan som kommer ut från ett formulär.
 export interface SignUpFormData {
   first_name: string;
   last_name: string;
@@ -37,8 +38,8 @@ export interface SignUpFormData {
   nation_pin?: boolean;
   donation?: number;
   gdpr?: boolean;
-  is_paying_guest: boolean;
-  total_cost: number;
+  is_paying_guest: boolean; //Används inte, ta bort
+  total_cost: number; //Används inte, ta bort
   food_preference_options: string;
   food_preference_custom: string;
 }
@@ -52,7 +53,11 @@ const auth = new google.auth.GoogleAuth({
 
 const sheets = google.sheets({ version: "v4", auth });
 
-// Convert SignUpFormData into a 2D array for Google Sheets
+/* Convert SignUpFormData into a 2D array for Google Sheets
+* Gör om datan till en vektor av stängar så att de kan skrivas ut i google sheets.
+* Mindre strul om allting som skickas in i arket är i textformat.
+* 
+*/
 function formatSignUpDataForSheets(formData: SignUpFormData, origin: string): string[][] {
   let now = new Date();
   let formattedDate = new Intl.DateTimeFormat("en-GB", options).format(now);
@@ -89,20 +94,28 @@ function formatSignUpDataForSheets(formData: SignUpFormData, origin: string): st
 
 
 
-// Function to append data to Google Sheets
+// Function som apiet kallar på
 export async function appendSignUpToSheet(formData: SignUpFormData, origin: string) {
 
   writeToSheet(formData, "Anmälningar!A4", origin)
 
   writeToSheet(formData, "[Skrivskyddad]Anmälningar!A1", origin)
   
-
+  /* Funktion för att skicka data till arket
+  * formData - datan som ska skrivas in på raden
+  * range - namnet på arket som ska integreras
+  * origin - vilken av sidorna som anmälan kommer ifrån (ex. Injudan. Anmodan eller Anmälan)
+  */
   async function writeToSheet(formData: SignUpFormData, range: string, origin: string) {
     try {
+
+      //Ta fram rätt ark från env.
       const spreadsheetId = process.env.SHEET_ID!;
-  
+      
+      //Formatera datan
       const formattedData = formatSignUpDataForSheets(formData, origin);
-  
+      
+      //Skicka genom google apis
       const result = await sheets.spreadsheets.values.append({
         spreadsheetId,
         range,

@@ -1,5 +1,8 @@
 export default function TackPage() {
 
+  /**
+   * Denna sidan visas efter att man skickat inte in anmälan
+   */
 
 return (
       <div className="p-2">

@@ -9,9 +9,10 @@ export default function AnmalanPage() {
   const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
 
+  //Hanterar hurvida den öppna anmälan ska vara öppen eller inte
   useEffect(() => {
     const now = new Date();
-    const openDate = new Date("2025-08-18T00:00:00"); // Datum anmälan öppnar
+    const openDate = new Date("2025-08-18T00:00:00"); // Datum anmälan ska öppna
     if (now >= openDate) {
       setIsVisible(true);
     }
@@ -25,14 +26,12 @@ export default function AnmalanPage() {
 
   const onSubmit = async (data: SignUpFormData) => {
 
-    const selectedOptions = data.food_preference_options || [];  // fallback if nothing is checked
-    const custom = data.food_preference_custom || "";            // fallback if nothing typed
-
-    // ✅ Combine into one string
+    //Hanterar matpreferenser
+    const selectedOptions = data.food_preference_options || [];
+    const custom = data.food_preference_custom || "";
     const allPreferences = [...selectedOptions, custom.trim()]
       .filter(Boolean) // remove empty strings
       .join(", ");
-
     data.food_preference = allPreferences;
 
     //Skickar formulärsvaret till ´consollen i webläsaren för felsökning, plocka bort innan prod.
@@ -45,14 +44,15 @@ export default function AnmalanPage() {
       body: JSON.stringify(data),
     });
 
+    //Skickar användaren till tack-sidan
     if (response.ok) {
       router.push("/tack");
-      // Poteniellt maila andressen script
     } else {
       alert("Något har gått fel, försök igen. Om felet kvarstår kontakta it@helsingkrona.se");
     }
   };
 
+  
   if (!isVisible) {
     return (
       <div className="p-2">
