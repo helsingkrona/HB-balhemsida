@@ -58,7 +58,7 @@ export default function AnmalanPage() {
       <div className="p-2">
         <div className="text-center p-6 bg-darkerGreen max-w-2xl shadow-lg rounded-lg mx-auto">
           <p className="text-lg font-medium">
-            Formuläret öppnar den 18 augusti 2025. Välkommen tillbaka då!
+            Formuläret öppnar den 25 augusti 2025. Välkommen tillbaka då!
           </p>
         </div>
       </div>
