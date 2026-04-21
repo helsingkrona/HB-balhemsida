@@ -52,7 +52,7 @@ export default function AnmalanPage() {
     }
   };
 
-  
+
   if (!isVisible) {
     return (
       <div className="p-2">
@@ -430,9 +430,9 @@ export default function AnmalanPage() {
           </div>
 
           {/* Submit */}
-          <button type="submit" className="bg-primaryBlue text-white py-2 px-4 rounded hover:bg-blue-600">
+          {/*<button</form> type="submit" className="bg-primaryBlue text-white py-2 px-4 rounded hover:bg-blue-600">
             Skicka anmälan
-          </button>
+          </button> </main>*/}
         </form >
       </div >
     </main>
