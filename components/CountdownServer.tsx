@@ -1,5 +1,5 @@
 const CountdownServer = async() => {
-    const targetDate = new Date("2025-10-04T00:00:00Z").getTime();
+    const targetDate = new Date("2026-10-03T00:00:00Z").getTime();
     const now = new Date().getTime();
     const difference = targetDate - now;
   

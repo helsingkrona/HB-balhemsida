@@ -3,6 +3,8 @@
 import { useForm } from "react-hook-form";
 import { SignUpFormData } from "@/google_sheets/helper";
 import { useRouter } from "next/navigation";
+import { REGISTRATION_OPEN } from "@/lib/registration";
+import RegistrationClosed from "@/components/RegistrationClosed";
 
 export default function SignupPage() {
   const router = useRouter();
@@ -12,6 +14,10 @@ export default function SignupPage() {
     handleSubmit,
     formState: { errors },
   } = useForm<SignUpFormData>();
+
+  if (!REGISTRATION_OPEN) {
+    return <RegistrationClosed />;
+  }
 
   const onSubmit = async (data: SignUpFormData) => {
 
@@ -168,7 +174,7 @@ export default function SignupPage() {
           </div>
           {/* Anmälan till fredagssittningen */}
           <div className="form-group">
-            <label className="form-section">Fredag 3/10</label>
+            <label className="form-section">Fredag 2/10</label>
             <div className="form-question">
               <label className="form-label">Vill du gå på Snörsjöasittningen (230 kr)?</label>
               <div className="form-answer-box">
@@ -182,27 +188,20 @@ export default function SignupPage() {
                 </label>
               </div>
             </div>
-            <div className="form-question">
-              <label className="form-answer-alternative">
-                <input type="checkbox" {...register("nation_songbook")} />
-                <span>Jag vill köpa till en sångbok (70 kr)</span>
-              </label>
-              <small className="form-answer-tip">Sångboken delas ut under snörsjöasittningen på fredagen</small>
-            </div>
           </div>
           {/* Anmälan till balen */}
           <div className=" rounded-md">
-            <label className="form-section">Lördag 4/10</label>
+            <label className="form-section">Lördag 3/10</label>
             <div className="form-question">
               <label className="form-label">Prisgrupp *</label>
               <div className="form-answer-box">
                 <label className="form-answer-alternative">
                   <input type="radio" {...register("saturday_dinner", { required: "Välj ett alternativ" })} value="Student" />
-                  <span>Student 915 kr</span>
+                  <span>Student 990 kr</span>
                 </label>
                 <label className="form-answer-alternative ">
                   <input type="radio" {...register("saturday_dinner", { required: "Välj ett alternativ" })} value="Icke-student" />
-                  <span>Icke-student 1070 kr</span>
+                  <span>Icke-student 1200 kr</span>
                 </label>
                 {errors.saturday_dinner && <p className="text-red-500">{errors.saturday_dinner.message}</p>}
               </div>
@@ -359,7 +358,7 @@ export default function SignupPage() {
 
           {/* Anmälan till söndagsbrunchen */}
           <div className="form-group">
-            <label className="form-section">Söndag 5/10</label>
+            <label className="form-section">Söndag 4/10</label>
             <label className="form-label">Vill du gå på Snörsjöbrunchen? (100 kr)</label>
             <div className="form-answer-box">
               <label className="form-answer-alternative">

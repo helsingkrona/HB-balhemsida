@@ -21,7 +21,7 @@ const Banner: React.FC = () => {
             <div className="absolute inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center text-center p-4">
                 {/* Title */}
                 <h1 className="text-white text-3xl md:text-5xl font-bold mb-2">
-                    SNÖRSJÖAORDEN 2025
+                    SNÖRSJÖAORDEN 2026
                 </h1>
 
                 {/* Countdown Timer */}

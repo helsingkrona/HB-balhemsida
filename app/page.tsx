@@ -16,7 +16,7 @@ export default function Home() {
         <div className=" flex flex-col items-center justify-center text-center pt-24">
           {/* Title */}
           <h1 className="text-white text-5xl md:text-5xl font-bold mb-2">
-            SNÖRSJÖAORDEN 2025
+            SNÖRSJÖAORDEN 2026
           </h1>
 
           {/* Countdown Timer */}
@@ -32,7 +32,7 @@ export default function Home() {
             {/* Friday Column */}
             <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6">
               <h3 className="text-2xl text-blue-950 font-semibold text-center mb-4">
-                Fredag 3 oktober
+                Fredag 2 oktober
               </h3>
               <ul className="space-y-2 text-black">
                 <li>Snörsjöasittning - 18:00</li>
@@ -44,7 +44,7 @@ export default function Home() {
             {/* Saturday Column */}
             <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6">
               <h3 className="text-2xl font-semibold text-center text-blue-950 mb-4">
-                Lördag 4 oktober
+                Lördag 3 oktober
               </h3>
               <ul className="space-y-2 text-black">
                 <li>Dörrarna öppnar - 16.30</li>
@@ -55,13 +55,25 @@ export default function Home() {
             {/* Sunday Column */}
             <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6">
               <h3 className="text-2xl font-semibold text-center text-blue-950 mb-4">
-                Söndag 5 oktober
+                Söndag 4 oktober
               </h3>
               <ul className="space-y-2 text-black">
                 <li>Balbrunch - 12:00</li>
                 <li>Vill man förlänga sin balhelg så kan man anmäla sig till en brunch på Helsingkrona där man kan bota din huvudvärk, eller välja att skjuta upp den till måndagen. Här bjuds det på en fin brunchbuffé och försäljning av klassiska brunchdrinkar.</li>
               </ul>
             </div>
+          </div>
+
+          {/* Hälsning från proinspektor */}
+          <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6 mt-6 max-w-3xl mx-auto">
+            <p className="text-black">
+              Snörsjöamossen i Småland testamenterades 1947 till Helsingkrona Nation av Emy Ekberg,
+              tidigare medlem i nationen. 1976 instiftades Snörsjöa-orden, med huvudsakligt syfte att
+              få en bra anledning att årligen ställa till med en nationsfest utöver det vanliga. Det
+              första ordensfirandet skedde 1978 i AF:s stora sal, och sedan dess har Snörsjöabalen
+              firats årligen, med undantag från pandemi-året 2020. Därav kommer den 50:onde balen gå
+              av stapeln 2028.
+            </p>
           </div>
         </div>
       </main>

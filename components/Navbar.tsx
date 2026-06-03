@@ -26,7 +26,7 @@ const Navbar: React.FC = () => {
             <Link href="/anmalan" className="navbar-links">Anmälan</Link>
           </li>
           <li>
-            <Link href="https://helsingkrona.se/sv/kontakta-oss" className="navbar-links">Kontakt</Link>
+            <Link href="/contact" className="navbar-links">Kontakt</Link>
           </li>
         </ul>
         <div className="basis-1/5">

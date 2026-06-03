@@ -1,22 +1,13 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import { useState, useEffect } from "react";
 import { SignUpFormData } from "@/google_sheets/helper";
 import { useRouter } from "next/navigation";
+import { REGISTRATION_OPEN } from "@/lib/registration";
+import RegistrationClosed from "@/components/RegistrationClosed";
 
 export default function AnmalanPage() {
-  const [isVisible, setIsVisible] = useState(false);
   const router = useRouter();
-
-  //Hanterar hurvida den öppna anmälan ska vara öppen eller inte
-  useEffect(() => {
-    const now = new Date();
-    const openDate = new Date("2025-08-25T00:00:00"); // Datum anmälan ska öppna
-    if (now >= openDate) {
-      setIsVisible(true);
-    }
-  }, []);
 
   const {
     register,
@@ -53,16 +44,8 @@ export default function AnmalanPage() {
   };
 
   
-  if (!isVisible) {
-    return (
-      <div className="p-2">
-        <div className="text-center p-6 bg-darkerGreen max-w-2xl shadow-lg rounded-lg mx-auto">
-          <p className="text-lg font-medium">
-            Formuläret öppnar den 25 augusti 2025. Välkommen tillbaka då!
-          </p>
-        </div>
-      </div>
-    );
+  if (!REGISTRATION_OPEN) {
+    return <RegistrationClosed />;
   }
 
   return (
@@ -192,7 +175,7 @@ export default function AnmalanPage() {
           </div>
           {/* Anmälan till fredagssittningen */}
           <div className="form-group">
-            <label className="form-section">Fredag 3/10</label>
+            <label className="form-section">Fredag 2/10</label>
             <div className="form-question">
               <label className="form-label">Vill du gå på Snörsjöasittningen (230 kr)?</label>
               <div className="form-answer-box">
@@ -206,27 +189,20 @@ export default function AnmalanPage() {
                 </label>
               </div>
             </div>
-            <div className="form-question">
-              <label className="form-answer-alternative">
-                <input type="checkbox" {...register("nation_songbook")} />
-                <span>Jag vill köpa till en sångbok (70 kr)</span>
-              </label>
-              <small className="form-answer-tip">Sångboken delas ut under snörsjöasittningen på fredagen</small>
-            </div>
           </div>
           {/* Anmälan till balen */}
           <div className=" rounded-md">
-            <label className="form-section">Lördag 4/10</label>
+            <label className="form-section">Lördag 3/10</label>
             <div className="form-question">
               <label className="form-label">Prisgrupp *</label>
               <div className="form-answer-box">
                 <label className="form-answer-alternative">
                   <input type="radio" {...register("saturday_dinner", { required: "Välj ett alternativ" })} value="Student" />
-                  <span>Student 915 kr</span>
+                  <span>Student 990 kr</span>
                 </label>
                 <label className="form-answer-alternative ">
                   <input type="radio" {...register("saturday_dinner", { required: "Välj ett alternativ" })} value="Icke-student" />
-                  <span>Icke-student 1070 kr</span>
+                  <span>Icke-student 1200 kr</span>
                 </label>
                 {errors.saturday_dinner && <p className="text-red-500">{errors.saturday_dinner.message}</p>}
               </div>
@@ -383,7 +359,7 @@ export default function AnmalanPage() {
 
           {/* Anmälan till söndagsbrunchen */}
           <div className="form-group">
-            <label className="form-section">Söndag 5/10</label>
+            <label className="form-section">Söndag 4/10</label>
             <label className="form-label">Vill du gå på Snörsjöbrunchen? (100 kr)</label>
             <div className="form-answer-box">
               <label className="form-answer-alternative">
