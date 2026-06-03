@@ -4,8 +4,13 @@ export default function AboutPage() {
     return (
         <main>
 
-            <div className="container mx-auto px-4 pt-24 pb-16">
-                <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6 mb-12">
+            <div className="container mx-auto px-4 py-16">
+                <h1 className="text-center font-serif text-5xl font-semibold text-parchment">
+                    Om Snörsjöaorden
+                </h1>
+                <div className="rule-gold mx-auto mt-4 mb-10 w-40" />
+
+                <div className="card-surface p-8 mb-12 max-w-4xl mx-auto text-ink">
                     <p>Varje höst går Helsingkronas kära Snörsjöaorden av stapeln! Men varför håller Helsingkrona en bal varje år och varför heter den Snörsjöaorden? Jo, balen har en anrik historia som går hela vägen tillbaka till 1947 då en Helsingkronit vid namn Emy Ekberg donerade en mosse vid namn Snörsjöamossen till Helsingkrona i syfte att nationen skulle sälja den och på så sätt tjäna pengar på mossen.
                         <br></br>
                         Mossen har ett utsökt läge i det småländska landskapet strax norr om Markaryd men någon försäljning blev aldrig av och tur var väl det! Istället kom några finurliga Helskroniter 1976 på en idé om hur mossen kunde nyttjas och samma år skapades Snörsjöaorden. År 1978 var det äntligen dags och då intog Snörsjöaorden AF-borgen för första gången i Snörsjöamossens ära och ställde till med en bal utan dess like. Sedan dess har balen hållits traditionsenligt den första lördagen i oktober för att hedra mossen!
@@ -15,7 +20,7 @@ export default function AboutPage() {
 
 
 
-                    <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                    <div className="card-surface p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
                         <div className="relative w-full h-full min-w-[120px] min-h-[120px] p-2 grid place-items-center">
                             <Image
                                 aria-hidden
@@ -27,13 +32,14 @@ export default function AboutPage() {
                         </div>
 
                         <div className="p-2 m-2">
-                            <p>5:e ståndet: Torvvändare <br></br>
+                            <p className="text-ink">
+                                <span className="mb-1 block font-serif text-lg font-semibold text-navy">5:e ståndet: Torvvändare</span>
                                 Denna medalj tilldelas vid deltagande i Snörsjöaorden för första gången. <br></br>Denna och följande medaljer är alla utformade i form av Snörsjöamossen i Småland.
                             </p>
                         </div>
                     </div>
 
-                    <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                    <div className="card-surface p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
                         <div className="relative w-full h-full min-w-[120px] min-h-[120px] p-2 grid place-items-center">
                             <Image
                                 aria-hidden
@@ -45,13 +51,14 @@ export default function AboutPage() {
                         </div>
 
                         <div className="p-2 m-2">
-                            <p>4:e ståndet: Stigfinnare <br></br>
+                            <p className="text-ink">
+                                <span className="mb-1 block font-serif text-lg font-semibold text-navy">4:e ståndet: Stigfinnare</span>
                                 Denna medalj får du när du deltar på Snörsjöaorden andra gången. <br></br>Den bygger vidare på Torvvändarens utformning, men kompletteras med ett stigmotiv.
                             </p>
                         </div>
                     </div>
 
-                    <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                    <div className="card-surface p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
                         <div className="relative w-full h-full min-w-[120px] min-h-[120px] p-2 grid place-items-center">
                             <Image
                                 aria-hidden
@@ -63,13 +70,14 @@ export default function AboutPage() {
                         </div>
 
                         <div className="p-2 m-2">
-                            <p>3:e ståndet Flottare <br></br>
+                            <p className="text-ink">
+                                <span className="mb-1 block font-serif text-lg font-semibold text-navy">3:e ståndet: Flottare</span>
                                 Vid det tredje deltagandet i Snörsjöaorden tilldelas ståndet Flottare. <br></br>Medaljen utökas med motiv av vattendrag.
                             </p>
                         </div>
                     </div>
 
-                    <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                    <div className="card-surface p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
                         <div className="relative w-full h-full min-w-[120px] min-h-[120px] p-2 grid place-items-center">
                             <Image
                                 aria-hidden
@@ -81,13 +89,14 @@ export default function AboutPage() {
                         </div>
 
                         <div className="p-2 m-2">
-                            <p>2:a ståndet Rallare<br></br>
+                            <p className="text-ink">
+                                <span className="mb-1 block font-serif text-lg font-semibold text-navy">2:a ståndet: Rallare</span>
                                 Vid det fjärde deltagandet i Snörsjöaorden erhålls en medalj som nu har utökats med en tågräls.
                             </p>
                         </div>
                     </div>
 
-                    <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                    <div className="card-surface p-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
                         <div className="relative w-full h-full min-w-[120px] min-h-[120px] p-2 grid place-items-center">
                             <Image
                                 aria-hidden
@@ -99,7 +108,8 @@ export default function AboutPage() {
                         </div>
 
                         <div className="p-2 m-2">
-                            <p>1:a ståndet Jägare <br></br>
+                            <p className="text-ink">
+                                <span className="mb-1 block font-serif text-lg font-semibold text-navy">1:a ståndet: Jägare</span>
                                 Jägare kan tilldelas vid deltagande i Snörsjöabalen för femte gången.<br></br>För denna medalj krävs dock mer än enbart närvaro på ordenskapitlet. Medaljen är den sista i ordningen, och det slutliga tillägget är ett jakttorn.
                             </p>
                         </div>

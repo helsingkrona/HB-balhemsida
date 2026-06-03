@@ -5,10 +5,14 @@ export default function TackPage() {
    */
 
 return (
-      <div className="p-2">
-        <div className="text-center p-6 bg-darkerGreen max-w-2xl shadow-lg rounded-lg mx-auto">
-          <p className="text-lg font-medium">
-            Tack för din anmälan! <br></br>Du kommer att få ett mail som bekräftar din anmälan inom kort.<br></br> Notera att anmälan inte medför platsgaranti.
+      <div className="container mx-auto px-4 py-20">
+        <div className="card-surface mx-auto max-w-xl border-t-4 border-gold p-10 text-center">
+          <h1 className="font-serif text-3xl font-semibold text-navy">Tack för din anmälan!</h1>
+          <div className="rule-gold mx-auto my-5 w-28" />
+          <p className="text-ink">
+            Du kommer att få ett mail som bekräftar din anmälan inom kort.
+            <br />
+            Notera att anmälan inte medför platsgaranti.
           </p>
         </div>
       </div>

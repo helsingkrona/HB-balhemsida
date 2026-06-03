@@ -51,8 +51,9 @@ export default function AnmalanPage() {
   return (
     <main>
       <div className="p-2"></div>
-      <div className="max-w-2xl mx-auto p-6 bg-darkerGreen shadow-lg rounded-lg">
-        <h1 className="text-4xl font-bold text-textGreen text-center mb-4">Anmälan Snörsjöaorden</h1>
+      <div className="max-w-2xl mx-auto p-6 card-surface border-t-4 border-navy">
+        <h1 className="font-serif text-4xl font-semibold text-navy text-center">Anmälan Snörsjöaorden</h1>
+        <div className="rule-gold mx-auto my-4 w-32" />
         <small className="form-answer-tip">Obligatoriska fält markeras med *</small>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -406,7 +407,7 @@ export default function AnmalanPage() {
           </div>
 
           {/* Submit */}
-          <button type="submit" className="bg-primaryBlue text-white py-2 px-4 rounded hover:bg-blue-600">
+          <button type="submit" className="btn-primary">
             Skicka anmälan
           </button>
         </form >
