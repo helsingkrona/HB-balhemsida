@@ -1,37 +1,71 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
-const Navbar: React.FC = () => {
-  return (
-    <nav className="bg-blue-950 p-2">
-      <div className="container mx-auto flex items-center justify-between">
-        <div className="basis-1/5 flex justify-start">
-          <Link href="/">
-            <Image
-              src={"/shield_color.png"}
-              alt="HB logo"
-              width={64}
-              height={64}
-            />
-          </Link>
+import { useState } from "react";
 
-        </div>
-        <ul className="basis-3/5 flex justify-center space-x-6">
-          <li>
-            <Link href="/" className="navbar-links">Start</Link>
-          </li>
-          <li>
-            <Link href="/about" className="navbar-links">Om</Link>
-          </li>
-          <li>
-            <Link href="/anmalan" className="navbar-links">Anmälan</Link>
-          </li>
-          <li>
-            <Link href="/contact" className="navbar-links">Kontakt</Link>
-          </li>
+const links = [
+  { href: "/", label: "Start" },
+  { href: "/about", label: "Om" },
+  { href: "/anmalan", label: "Anmälan" },
+  { href: "/contact", label: "Kontakt" },
+];
+
+const Navbar: React.FC = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <nav className="bg-navy border-b border-gold/60">
+      <div className="container mx-auto flex items-center justify-between px-4 py-3">
+        {/* Vapen + ordnamn */}
+        <Link href="/" className="flex items-center gap-3" onClick={() => setOpen(false)}>
+          <Image src="/shield_color.png" alt="Helsingkrona nations vapen" width={44} height={44} />
+          <span className="font-serif text-xl tracking-wide text-parchment">
+            Snörsjöaorden
+          </span>
+        </Link>
+
+        {/* Länkar – desktop */}
+        <ul className="hidden md:flex items-center gap-8">
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link href={link.href} className="navbar-links">
+                {link.label}
+              </Link>
+            </li>
+          ))}
         </ul>
-        <div className="basis-1/5">
-        </div>
+
+        {/* Hamburgerknapp – mobil */}
+        <button
+          type="button"
+          className="md:hidden text-parchment p-2"
+          aria-label="Meny"
+          aria-expanded={open}
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span className="block w-6 h-px bg-current mb-1.5" />
+          <span className="block w-6 h-px bg-current mb-1.5" />
+          <span className="block w-6 h-px bg-current" />
+        </button>
       </div>
+
+      {/* Länkar – mobil dropdown */}
+      {open && (
+        <ul className="md:hidden border-t border-gold/30 px-4 pb-4 pt-2 space-y-3">
+          {links.map((link) => (
+            <li key={link.href}>
+              <Link
+                href={link.href}
+                className="navbar-links block"
+                onClick={() => setOpen(false)}
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </nav>
   );
 };

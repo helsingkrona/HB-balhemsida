@@ -1,84 +1,120 @@
-import Banner from "@/components/Banner";
-import Image from "next/image";
-import CountdownServer from "@/components/CountdownServer"
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      <main
+      {/* Hero */}
+      <section
+        className="relative flex min-h-[88vh] items-center justify-center px-4"
         style={{
           backgroundImage: "url('/studiovega_241005_249.jpg')",
-          minHeight: "100vh", // to fill screen
           backgroundSize: "cover",
-        }}>
+          backgroundPosition: "center",
+        }}
+      >
+        {/* Mörk scrim för läsbarhet */}
+        <div className="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/45 to-navy/85" />
 
-        {/* Overlay for text and countdown */}
-        <div className=" flex flex-col items-center justify-center text-center pt-24">
-          {/* Title */}
-          <h1 className="text-white text-5xl md:text-5xl font-bold mb-2">
-            SNÖRSJÖAORDEN 2026
+        <div className="relative z-10 text-center text-parchment">
+          <p className="text-xs uppercase tracking-[0.35em] text-gold sm:text-sm">
+            Helsingkrona Nation
+          </p>
+
+          <h1 className="mt-4 font-serif text-5xl font-semibold sm:text-7xl">
+            Snörsjöaorden
           </h1>
+          <p className="mt-1 font-serif text-2xl tracking-[0.3em] text-gold sm:text-3xl">
+            ANNO 2026
+          </p>
 
-          {/* Countdown Timer */}
-          {/*<CountdownServer />*/}
-        </div>
+          <div className="rule-gold mx-auto my-7 w-40" />
 
+          {/* Datum */}
+          <ul className="flex flex-col items-center justify-center gap-2 font-serif text-lg sm:flex-row sm:gap-8 sm:text-xl">
+            <li>Fredag <span className="text-gold">2/10</span></li>
+            <li className="hidden text-gold/60 sm:inline">·</li>
+            <li>Lördag <span className="text-gold">3/10</span></li>
+            <li className="hidden text-gold/60 sm:inline">·</li>
+            <li>Söndag <span className="text-gold">4/10</span></li>
+          </ul>
 
-
-        <div className="container mx-auto px-4 pt-24 pb-16">
-          <h2 className="text-4xl text-white font-bold text-center">Helgens festligheter</h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-            {/* Friday Column */}
-            <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6">
-              <h3 className="text-2xl text-blue-950 font-semibold text-center mb-4">
-                Fredag 2 oktober
-              </h3>
-              <ul className="space-y-2 text-black">
-                <li>Snörsjöasittning - 18:00</li>
-                <li>Sittning å Helsingkrona nations gille för att båda välkomna våra vännationer och för att värma upp ordentligt inför lördagens balfestligheter. Kvällen avslutas på Helsingkronas nattklubb Schlagernatt.</li>
-                
-              </ul>
-            </div>
-
-            {/* Saturday Column */}
-            <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6">
-              <h3 className="text-2xl font-semibold text-center text-blue-950 mb-4">
-                Lördag 3 oktober
-              </h3>
-              <ul className="space-y-2 text-black">
-                <li>Dörrarna öppnar - 16.30</li>
-                <li>Ordenshögtid & middag med installation av hederledamöter och proinspektor å Akademiska föreningen.</li>
-              </ul>
-            </div>
-
-            {/* Sunday Column */}
-            <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6">
-              <h3 className="text-2xl font-semibold text-center text-blue-950 mb-4">
-                Söndag 4 oktober
-              </h3>
-              <ul className="space-y-2 text-black">
-                <li>Balbrunch - 12:00</li>
-                <li>Vill man förlänga sin balhelg så kan man anmäla sig till en brunch på Helsingkrona där man kan bota din huvudvärk, eller välja att skjuta upp den till måndagen. Här bjuds det på en fin brunchbuffé och försäljning av klassiska brunchdrinkar.</li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Hälsning från proinspektor */}
-          <div className="bg-white bg-opacity-70 shadow-lg rounded-2xl p-6 mt-6 max-w-3xl mx-auto">
-            <p className="text-black">
-              Snörsjöamossen i Småland testamenterades 1947 till Helsingkrona Nation av Emy Ekberg,
-              tidigare medlem i nationen. 1976 instiftades Snörsjöa-orden, med huvudsakligt syfte att
-              få en bra anledning att årligen ställa till med en nationsfest utöver det vanliga. Det
-              första ordensfirandet skedde 1978 i AF:s stora sal, och sedan dess har Snörsjöabalen
-              firats årligen, med undantag från pandemi-året 2020. Därav kommer den 50:onde balen gå
-              av stapeln 2028.
-            </p>
+          <div className="mt-9">
+            <Link href="/anmalan" className="btn-primary">
+              Till anmälan
+            </Link>
+            <p className="mt-3 text-sm text-parchment/70">Anmälan öppnar inom kort</p>
           </div>
         </div>
-      </main>
+      </section>
+
+      {/* Helgens festligheter */}
+      <section className="container mx-auto px-4 py-16">
+        <h2 className="text-center font-serif text-4xl font-semibold text-parchment">
+          Helgens festligheter
+        </h2>
+        <div className="rule-gold mx-auto mt-4 mb-10 w-40" />
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          {/* Fredag */}
+          <div className="card-surface p-6">
+            <h3 className="mb-4 text-center text-2xl font-semibold text-navy">
+              Fredag 2 oktober
+            </h3>
+            <ul className="space-y-2 text-ink">
+              <li className="font-medium text-nationRed">Snörsjöasittning · 18:00</li>
+              <li>
+                Sittning å Helsingkrona nations gille för att båda välkomna våra vännationer och för
+                att värma upp ordentligt inför lördagens balfestligheter. Kvällen avslutas på
+                Helsingkronas nattklubb Schlagernatt.
+              </li>
+            </ul>
+          </div>
+
+          {/* Lördag */}
+          <div className="card-surface p-6">
+            <h3 className="mb-4 text-center text-2xl font-semibold text-navy">
+              Lördag 3 oktober
+            </h3>
+            <ul className="space-y-2 text-ink">
+              <li className="font-medium text-nationRed">Dörrarna öppnar · 16:30</li>
+              <li>
+                Ordenshögtid &amp; middag med installation av hederledamöter och proinspektor å
+                Akademiska föreningen.
+              </li>
+            </ul>
+          </div>
+
+          {/* Söndag */}
+          <div className="card-surface p-6">
+            <h3 className="mb-4 text-center text-2xl font-semibold text-navy">
+              Söndag 4 oktober
+            </h3>
+            <ul className="space-y-2 text-ink">
+              <li className="font-medium text-nationRed">Balbrunch · 12:00</li>
+              <li>
+                Vill man förlänga sin balhelg så kan man anmäla sig till en brunch på Helsingkrona där
+                man kan bota din huvudvärk, eller välja att skjuta upp den till måndagen. Här bjuds det
+                på en fin brunchbuffé och försäljning av klassiska brunchdrinkar.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Hälsning från proinspektor */}
+        <div className="card-surface mx-auto mt-10 max-w-3xl p-8">
+          <h3 className="mb-3 text-center text-2xl font-semibold text-navy">
+            Snörsjöamossens historia
+          </h3>
+          <p className="text-ink">
+            Snörsjöamossen i Småland testamenterades 1947 till Helsingkrona Nation av Emy Ekberg,
+            tidigare medlem i nationen. 1976 instiftades Snörsjöa-orden, med huvudsakligt syfte att
+            få en bra anledning att årligen ställa till med en nationsfest utöver det vanliga. Det
+            första ordensfirandet skedde 1978 i AF:s stora sal, och sedan dess har Snörsjöabalen
+            firats årligen, med undantag från pandemi-året 2020. Därav kommer den 50:onde balen gå
+            av stapeln 2028.
+          </p>
+        </div>
+      </section>
     </>
   );
 }
-
-

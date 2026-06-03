@@ -36,6 +36,55 @@
 body {
   background: var(--background);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  color: #1C1B19; /* ink */
+}
+
+/* Serif-rubriker ger den ceremoniella balkänslan */
+h1, h2, h3, .font-display {
+  font-family: var(--font-eb-garamond), ui-serif, Georgia, serif;
+  letter-spacing: 0.01em;
+}
+
+/* Tydlig, guldfärgad fokusmarkering för tangentbordsnavigering */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #C8A24B;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Pergamentyta – ersätter de generiska "frostade" vita korten */
+.card-surface {
+  @apply rounded-2xl shadow-md;
+  background-color: #F4ECDD;
+  border: 1px solid rgba(200, 162, 75, 0.45);
+}
+
+/* Tunn guldlinje som heraldisk avdelare */
+.rule-gold {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(200, 162, 75, 0.9),
+    transparent
+  );
+}
+
+/* Liten heraldisk romb-accent */
+.lozenge::before {
+  content: "";
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin: 0 0.6em;
+  transform: rotate(45deg);
+  background-color: #C8A24B;
+  vertical-align: middle;
 }
 
 .form-container {
@@ -49,7 +98,7 @@ body {
 }
 
 .navbar-links {
-  @apply text-white text-xl hover:underline;
+  @apply text-sm uppercase tracking-widest text-parchment/90 transition-colors hover:text-gold;
 }
 
 .from-main {
@@ -61,7 +110,7 @@ body {
 }
 
 .form-label {
-  @apply block text-deepForestGreen text-lg font-medium pt-2;
+  @apply block text-navy text-lg font-medium pt-2;
 }
 
 .form-question {
@@ -69,7 +118,7 @@ body {
 }
 
 .form-section {
-  @apply block font-bold text-xl text-center mb-2 text-deepForestGreen;
+  @apply block font-serif font-semibold text-2xl text-center mb-2 text-navy;
 }
 
 .form-answer-box {
@@ -77,7 +126,7 @@ body {
 }
 
 .form-answer-alternative {
-  @apply flex items-center text-deepForestGreen space-x-2;
+  @apply flex items-center text-ink space-x-2;
 }
 
 .form-answer-tip {
@@ -99,4 +148,14 @@ body {
 
 .button-primary:hover {
   background-color: var(--accent-orange);
+}
+
+/* Heraldisk primärknapp: marinblå → nationsröd vid hover */
+.btn-primary {
+  @apply inline-block rounded-md px-6 py-2.5 font-semibold tracking-wide text-white transition-colors;
+  background-color: #001440;
+}
+
+.btn-primary:hover {
+  background-color: #9A031E;
 }
