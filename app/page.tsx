@@ -125,6 +125,9 @@ export default function Home() {
             firats årligen, med undantag från pandemi-året 2020. Därav kommer den 50:onde balen gå
             av stapeln 2028.
           </p>
+          <p className="mt-4 text-right font-serif italic text-navy/80">
+            — Ulrika, nationens proinspektor
+          </p>
         </div>
       </section>
 
