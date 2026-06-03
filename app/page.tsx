@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden px-4">
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-4">
         {/* Aftermovie som bakgrund (redan klippt till själva filmningen på disk) */}
         <video
           className="absolute inset-0 h-full w-full object-cover"
