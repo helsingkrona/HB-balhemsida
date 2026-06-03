@@ -8,6 +8,7 @@ var EMAIL_COL_INDEX = 3;
 var ADDRESS_COL_INDEX = 4;
 var POSTAL_CODE_COL_INDEX = 5;
 var CITY_COL_INDEX = 6;
+var TITLE_COL_INDEX = 7;
 var RELATION_COL_INDEX = 8;
 var RESPECTIVE_COL_INDEX = 9;
 var COMPANY_COL_INDEX = 10;
@@ -116,6 +117,7 @@ function sendPaymentEmail(rowData, rowIndex, sheet) {
   emailTemplate.submission = {
     fname: fName,
     lname: rowData[LAST_NAME_COL_INDEX],
+    title: rowData[TITLE_COL_INDEX],
     address: rowData[ADDRESS_COL_INDEX],
     postal_code: rowData[POSTAL_CODE_COL_INDEX],
     city: rowData[CITY_COL_INDEX],
@@ -182,6 +184,7 @@ function sendFreePaymentEmail(rowData, rowIndex, sheet) {
   emailTemplate.submission = {
     fname: fName,
     lname: rowData[LAST_NAME_COL_INDEX],
+    title: rowData[TITLE_COL_INDEX],
     address: rowData[ADDRESS_COL_INDEX],
     postal_code: rowData[POSTAL_CODE_COL_INDEX],
     city: rowData[CITY_COL_INDEX],
