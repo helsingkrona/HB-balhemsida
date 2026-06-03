@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import Countdown from "@/components/Countdown";
 
 export default function Home() {
   return (
@@ -43,6 +44,11 @@ export default function Home() {
             <li className="hidden text-gold/60 sm:inline">·</li>
             <li>Söndag <span className="text-gold">4/10</span></li>
           </ul>
+
+          {/* Live-nedräkning till balen */}
+          <div className="mt-9">
+            <Countdown />
+          </div>
 
           <div className="mt-9">
             <Link href="/anmalan" className="btn-primary">
