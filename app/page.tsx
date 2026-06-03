@@ -1,17 +1,23 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section
-        className="relative flex min-h-[88vh] items-center justify-center px-4"
-        style={{
-          backgroundImage: "url('/studiovega_241005_249.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      >
+      <section className="relative flex min-h-[88vh] items-center justify-center overflow-hidden px-4">
+        {/* Aftermovie som bakgrund (redan klippt till själva filmningen på disk) */}
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/hero-poster.jpg"
+        >
+          <source src="/aftermovie.mp4" type="video/mp4" />
+        </video>
+
         {/* Mörk scrim för läsbarhet */}
         <div className="absolute inset-0 bg-gradient-to-b from-navy/70 via-navy/45 to-navy/85" />
 
@@ -113,6 +119,39 @@ export default function Home() {
             firats årligen, med undantag från pandemi-året 2020. Därav kommer den 50:onde balen gå
             av stapeln 2028.
           </p>
+        </div>
+      </section>
+
+      {/* Glimtar från balen */}
+      <section className="container mx-auto px-4 pb-20">
+        <h2 className="text-center font-serif text-4xl font-semibold text-parchment">
+          Glimtar från balen
+        </h2>
+        <div className="rule-gold mx-auto mt-4 mb-10 w-40" />
+
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+          {[
+            { src: "/serving_food.jpg", caption: "Middagen" },
+            { src: "/party.jpg", caption: "Festen" },
+            { src: "/dancing_club.jpg", caption: "Dansen" },
+          ].map((img) => (
+            <figure
+              key={img.src}
+              className="group relative aspect-[4/5] overflow-hidden rounded-xl border border-gold/40 shadow-md"
+            >
+              <Image
+                src={img.src}
+                alt={img.caption}
+                fill
+                sizes="(max-width: 640px) 100vw, 33vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-transparent to-transparent" />
+              <figcaption className="absolute bottom-4 left-0 right-0 text-center font-serif text-xl tracking-wide text-parchment">
+                {img.caption}
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
     </>

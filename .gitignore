@@ -24,6 +24,11 @@
 .DS_Store
 *.pem
 
+# lokal media-källa + tillfälliga designverktyg (ej för repo)
+/public/aftermovie2022.mp4
+.screenshots.mjs
+.probe.mjs
+
 # debug
 npm-debug.log*
 yarn-debug.log*
