@@ -131,9 +131,9 @@ export default function Home() {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
           {[
-            { src: "/serving_food.jpg", caption: "Middagen" },
-            { src: "/party.jpg", caption: "Festen" },
-            { src: "/dancing_club.jpg", caption: "Dansen" },
+            { src: "/serving_food.jpg", caption: "Vid borden" },
+            { src: "/party.jpg", caption: "Gemenskapen" },
+            { src: "/dancing_club.jpg", caption: "Dans till sent" },
           ].map((img) => (
             <figure
               key={img.src}
