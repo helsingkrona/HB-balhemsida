@@ -97,9 +97,9 @@ function formatSignUpDataForSheets(formData: SignUpFormData, origin: string): st
 // Function som apiet kallar på
 export async function appendSignUpToSheet(formData: SignUpFormData, origin: string) {
 
-  writeToSheet(formData, "Anmälningar!A4", origin)
+  await writeToSheet(formData, "Anmälningar!A4", origin)
 
-  writeToSheet(formData, "[Skrivskyddad]Anmälningar!A1", origin)
+  await writeToSheet(formData, "[Skrivskyddad]Anmälningar!A1", origin)
   
   /* Funktion för att skicka data till arket
   * formData - datan som ska skrivas in på raden

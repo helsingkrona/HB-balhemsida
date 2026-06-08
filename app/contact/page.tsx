@@ -32,9 +32,9 @@ export default function ContactPage() {
             <div>
               <h2 className="font-serif text-xl font-semibold text-navy">Frågor om anmälan</h2>
               <p>
-                Övermarskalk:{" "}
-                <a href="mailto:overmarskalk@helsingkrona.se" className="text-nationRed underline">
-                  overmarskalk@helsingkrona.se
+                Notarie:{" "}
+                <a href="mailto:notarie@helsingkrona.se" className="text-nationRed underline">
+                  notarie@helsingkrona.se
                 </a>
               </p>
             </div>

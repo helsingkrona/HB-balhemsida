@@ -26,6 +26,8 @@
 
 # lokal media-källa + tillfälliga designverktyg (ej för repo)
 /public/aftermovie2022.mp4
+/public/aftermovie.mp4
+/public/Snosjoaordern2024.mp4
 .screenshots.mjs
 .probe.mjs
 

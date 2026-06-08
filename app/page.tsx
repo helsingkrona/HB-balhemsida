@@ -16,7 +16,7 @@ export default function Home() {
           playsInline
           poster="/hero-poster.jpg"
         >
-          <source src="/aftermovie.mp4" type="video/mp4" />
+          <source src="/Snosjoaordern2024.mp4" type="video/mp4" />
         </video>
 
         {/* Mörk scrim för läsbarhet */}
@@ -122,11 +122,11 @@ export default function Home() {
             tidigare medlem i nationen. 1976 instiftades Snörsjöa-orden, med huvudsakligt syfte att
             få en bra anledning att årligen ställa till med en nationsfest utöver det vanliga. Det
             första ordensfirandet skedde 1978 i AF:s stora sal, och sedan dess har Snörsjöabalen
-            firats årligen, med undantag från pandemi-året 2020. Därav kommer den 50:onde balen gå
+            firats årligen, med undantag från pandemi-året 2020. Därav kommer den 50:e balen gå
             av stapeln 2028.
           </p>
           <p className="mt-4 text-right font-serif italic text-navy/80">
-            — Ulrika, nationens proinspektor
+            — Ulrika Knutsson, nationens proinspektor
           </p>
         </div>
       </section>
