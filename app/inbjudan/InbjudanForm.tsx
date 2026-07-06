@@ -149,13 +149,6 @@ export default function InbjudanForm() {
             <label className="form-section">Lördagen 3/10</label>
 
             <div className="form-question">
-              <label className="form-answer-alternative">
-                <input type="checkbox" {...register("alumni_drink")} />
-                <span>Jag vill anmäla mig till alumnifördrinken</span>
-              </label>
-            </div>
-
-            <div className="form-question">
               <label className="form-label">Dryckespreferens *</label>
               <div className="form-answer-box">
                 <label className="form-answer-alternative">
