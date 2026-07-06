@@ -140,7 +140,7 @@ export default function AnmalanForm() {
                       {...register("food_preference_options")}
                       className="accent-deepForestGreen"
                     />
-                    <span>{option}</span>
+                    {option}
                   </label>
                 ))}
               </div>

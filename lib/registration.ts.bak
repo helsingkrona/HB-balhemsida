@@ -7,6 +7,6 @@
  * OBS: Befintlig data i Google Sheet påverkas inte – det styr bara
  * om nya anmälningar går att skicka in.
  */
-export const ANMALAN_OPEN = true;
-export const ANMODAN_OPEN = true;
-export const INBJUDAN_OPEN = true;
+export const ANMALAN_OPEN = false;
+export const ANMODAN_OPEN = false;
+export const INBJUDAN_OPEN = false;
