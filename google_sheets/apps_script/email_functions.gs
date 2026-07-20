@@ -200,7 +200,7 @@ function sendFreePaymentEmail(rowData, rowIndex, sheet) {
     sexa: rowData[SEXA_COL_INDEX],
     brunch: rowData[BRUNCH_COL_INDEX],
     donation: rowData[DONATION_COL_INDEX],
-    banking_prefix: rowData[PAYMENT_ID_COL_INDEX],
+    banking_prefix: paymentId,
   };
   var message = emailTemplate.evaluate().getContent();
   MailApp.sendEmail({ to: emailAddress, subject: subject, htmlBody: message });
